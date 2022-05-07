@@ -5,6 +5,40 @@
   height: 100vh;
 }
 
+Button {
+  background-color: transparent;
+  border: 2px solid #1A1A1A;
+  border-radius: 15px;
+  box-sizing: border-box;
+  color: #38556A;
+  cursor: pointer;
+  display: inline-block;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: normal;
+  margin: 0;
+  min-height: 60px;
+  outline: none;
+  padding: 16px 24px;
+  text-align: center;
+  text-decoration: none;
+  transition: all 400ms cubic-bezier(.23, 1, 0.32, 1);
+  touch-action: manipulation;
+  width: 50%;
+}
+
+Button:hover {
+  color: #fff;
+  background-color: rgb(39,57,82);
+  box-shadow: rgba(0, 0, 0, 0.25) 0 8px 15px;
+  transform: translateY(-2px);
+}
+
+Button:active {
+  box-shadow: none;
+  transform: translateY(0);
+}
+
 .Footer {
   height: 8vh;
   width: 100vw;
@@ -42,9 +76,55 @@
   margin-left: 5px;
 }
 
+.loginButt {
+  width: 15vw;
+  background-color: #fff;
+}
+
+.loginButt:disabled {
+  color: #fff;
+  background-color: rgb(39,57,82);
+  box-shadow: rgba(0, 0, 0, 0.25) 0 8px 15px;
+  pointer-events: none;
+}
+
+.newUser {
+  border-bottom-right-radius: 0;
+  border-top-right-radius: 0;
+}
+
 p {
   margin: 0 15px;
   font-weight: 500;
+}
+
+.Register {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.registerTitle {
+  margin-bottom: 5px;
+  color: #273952;
+  font-weight: 700;
+}
+
+.returnUser {
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+}
+
+.SignIn, .SignUp {
+  background-color: #fff;
+  min-height: 25vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  border: #273952 solid 2px;
+  border-radius: 10px;
+  padding-bottom: 10px;
 }
 
 .WelcomePage {
@@ -56,41 +136,6 @@ p {
 
 .WelcomePage, .Home, .Register {
   height: 76vh;
-}
-
-
-.welcomePageButton {
-  background-color: transparent;
-  border: 2px solid #1A1A1A;
-  border-radius: 15px;
-  box-sizing: border-box;
-  color: #38556A;
-  cursor: pointer;
-  display: inline-block;
-  font-size: 16px;
-  font-weight: 600;
-  line-height: normal;
-  margin: 0;
-  min-height: 60px;
-  outline: none;
-  padding: 16px 24px;
-  text-align: center;
-  text-decoration: none;
-  transition: all 400ms cubic-bezier(.23, 1, 0.32, 1);
-  touch-action: manipulation;
-  width: 50%;
-}
-
-.welcomePageButton:hover {
-  color: #fff;
-  background-color: rgb(39,57,82);
-  box-shadow: rgba(0, 0, 0, 0.25) 0 8px 15px;
-  transform: translateY(-2px);
-}
-
-.welcomePageButton:active {
-  box-shadow: none;
-  transform: translateY(0);
 }
 
 .welcomePageText {
