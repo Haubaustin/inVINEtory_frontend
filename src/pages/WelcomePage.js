@@ -1,13 +1,11 @@
 
-
-
-
 const WelcomePage = () => {
     
     return (
     <div className="WelcomePage">
-        <video autoplay loop className="welcomePageVideo" src="https://cdn.videvo.net/videvo_files/video/free/2015-05/large_watermarked/grape_preview.mp4">
-        </video>
+        <div className="welcomePageImage">
+            <div className="welcomePageImage1"></div>
+        </div>
         <div className="welcomePageText">
             <h3>
                 Welcome to inVINEtory
@@ -24,9 +22,12 @@ const WelcomePage = () => {
             <p>
                 Begin by signing up or logging in below
             </p>
-            <button className="welcomePageButton">
-                Signup/Signin
-            </button>
+                <button className="welcomePageButton" onClick={(e) => {
+                    e.preventDefault()
+                    window.location.href="/register"
+                }}>
+                    Signup/Signin
+                </button>
         </div>
     </div>
     )

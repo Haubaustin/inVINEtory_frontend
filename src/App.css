@@ -88,6 +88,10 @@ Button:active {
   pointer-events: none;
 }
 
+.loginSubmit {
+  margin-top: 10px;
+}
+
 .newUser {
   border-bottom-right-radius: 0;
   border-top-right-radius: 0;
@@ -151,9 +155,12 @@ p {
   justify-content: space-evenly;
 }
 
-.welcomePageVideo {
+.welcomePageImage {
   height: 90%;
   width: 80%;
   border:#273952 3px solid;
   border-radius: 10px;
+  background-image: url("https://jaksonhospitality.com/blog/wp-content/uploads/2017/09/vineyard-grapes-home-slideshow.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
 }
