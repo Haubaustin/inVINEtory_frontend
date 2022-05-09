@@ -207,6 +207,11 @@ p {
   background-color: #38556A;
 }
 
+.storageSubmit:disabled {
+  background-color: #1A1A1A;
+  cursor: not-allowed;
+}
+
 .WelcomePage {
   display: grid;
   grid-template-columns: 1fr 1fr;

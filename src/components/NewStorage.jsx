@@ -1,15 +1,20 @@
 import { useState } from "react"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faWineBottle } from "@fortawesome/free-solid-svg-icons"
+import Client from "../services/api"
+import { useParams } from "react-router-dom";
 
 const NewStorage =() => {
-    // let storage 
     const [storage, setStorage] =useState()
+    const [message, setMessage] =useState("")
+    const { userId } = useParams()
+
 
     const [data, setData ]=useState({
         name: "",
         rows: 0,
-        columns: 0
+        columns: 0,
+        user_id: parseInt(userId)
     })
 
     const handleChange = (e) => {
@@ -22,8 +27,25 @@ const NewStorage =() => {
         console.log(data)   
     }
     
-    const handleSubmit= () => {
-
+    const handleSubmit= async (e) => {
+        try {
+            e.preventDefault()
+            const res = await Client.post(`/storage/${userId}/create`, data)
+            console.log(res)
+            setMessage(res.data.message)
+            setTimeout(() => {
+                setMessage("")
+                setData({
+                    name: "",
+                    rows: 0,
+                    columns: 0,
+                })
+                setStorage()
+            }, 2000);
+            }
+        catch (error) {
+            throw error
+        }
     }
 
     function twoDimensionArray(a, b) {
@@ -52,13 +74,13 @@ const NewStorage =() => {
                 <input type="number" placeholder="Rows" name="rows" min="0" onChange={handleChange} value={data.rows}/>  <br/>
                 <input type="number" placeholder="Columns" name="columns" min="0" onChange={handleChange} value={data.columns}/> <br/>
                 <input type="text" placeholder="Name" name="name" onChange={handleChange} value={data.name}/> <br/>
-                <button className="storageSubmit">Submit</button>
+                <button className="storageSubmit" disabled={!data.rows || !data.columns || !data.name}>Submit</button>
             </form>
-            <h3>{data.name}</h3>
+            {message}
+            <h3>{data.name}: {data.rows*data.columns} Total Bottles</h3>
             {storage && storage.map((row) => (
                   <p className="storageDisplay">{row}</p>
             ))}
-            <p>Total Bottles: {data.rows*data.columns}</p>
         </div>
     )
 }
