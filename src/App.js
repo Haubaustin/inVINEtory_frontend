@@ -35,7 +35,7 @@ function App() {
         <Routes>
           <Route path='/' element={<WelcomePage />} />
           <Route path='/register' element={<Register />} />
-          <Route path='/home' element={<Home user={user}  />} />
+          <Route path={`/${userId}/home`} element={<Home user={user}  />} />
         </Routes>
       <Footer />
     </div>

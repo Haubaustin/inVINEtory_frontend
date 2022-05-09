@@ -107,6 +107,11 @@ Button:active {
   justify-content: center;
 }
 
+.homeAdd {
+  display: grid;
+  justify-items: center;
+}
+
 .homeBottle, .homeStorage {
   height: 90%;
   width: 90vw;

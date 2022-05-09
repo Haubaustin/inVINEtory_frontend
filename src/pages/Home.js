@@ -1,8 +1,32 @@
 import { useNavigate } from "react-router-dom"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {faPlusSquare} from "@fortawesome/free-regular-svg-icons"
+import Modal from 'react-modal';
+import NewStorage from "../components/NewStorage";
+import { useState } from "react";
+
 
 
 const Home = ({ user }) => {
     const navigate = useNavigate()
+    const [storageModal, setStorageModal]=useState(false)
+    const [bottleModal, setBottleModal]=useState(false)
+
+    const handleOpenStorageModal = () => {
+        setStorageModal(true)
+    }
+
+    const handleOpenBottleModal = () => {
+        setBottleModal(true)
+    }
+
+    const handleCloseStorageModal = () => {
+        setStorageModal(false)
+    }
+
+    const handleCloseBottleModal = () => {
+        setBottleModal(false)
+    }
 
 
     return (user) ? (
@@ -10,17 +34,48 @@ const Home = ({ user }) => {
         <div className="homeStorage">
             <div className="homeStorageDisplay">
                 <h2>{user}'s Storage</h2>
+                {/* API  call to list/display user's storage */}
             </div>
-            <div>
-                <h2>Add New Storage</h2>
+            <div className="homeAdd">
+                <h2 className="homeAddTitle">Add New Storage</h2>
+                <FontAwesomeIcon 
+                    icon={faPlusSquare} 
+                    size="7x" 
+                    onClick={handleOpenStorageModal}/>
+                <Modal 
+                    isOpen={storageModal} 
+                    onRequestClose={handleCloseStorageModal}
+                    className="addModal"
+                    overlayClassName="addOverlay"
+                    >
+                        <div>
+                            Modal Open
+                        </div>
+                </Modal> 
+                
             </div>
         </div>
         <div className="homeBottle">
             <div className="homeBottleDisplay">
                 <h2>{user}'s Bottles</h2>
+                {/* API  call to list/display user's bottles */}
+
             </div>
-            <div>
-                <h2>Add More Bottles</h2>
+            <div className="homeAdd">
+                <h2 className="homeAddTitle">Add More Bottles</h2>
+                <FontAwesomeIcon 
+                    icon={faPlusSquare} 
+                    size="7x" 
+                    onClick={handleOpenBottleModal} />
+                <Modal 
+                    isOpen={bottleModal} 
+                    onRequestClose={handleCloseBottleModal}
+                    className="addModal"
+                    overlayClassName="addOverlay">
+                        <div>
+                            Modal Open
+                        </div>
+                </Modal>
             </div>
         </div>        
     </div>
