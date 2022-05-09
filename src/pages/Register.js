@@ -1,11 +1,10 @@
 import React, { useState } from 'react'
-import SignIn from '../components/Signin/SignIn'
-import SignUp from '../components/Signin/SignUp'
+import SignIn from '../components/SignIn'
+import SignUp from '../components/SignUp'
 
 
 
 const Register = () => {
-    //True: Returning User
     const [data, setData] = useState(true)
 
 
@@ -24,7 +23,7 @@ const Register = () => {
             <div>
                 <button onClick={()=>{setData(false)}} className="loginButt newUser" disabled={!data}>Create Account</button>
                 <button onClick={()=>{setData(true)}} className="loginButt returnUser" disabled={data}>Returning User</button>
-                <SignUp />
+                <SignUp setData={setData}/>
             </div>
         </div>
     )

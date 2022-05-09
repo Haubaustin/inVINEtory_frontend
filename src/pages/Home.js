@@ -1,11 +1,15 @@
 
 
 
-const Home = () => {
+const Home = ({ user, auth }) => {
     
-    return (
+    return (user & auth) ? (
     <div className="Home">
-        
+
+    </div>
+    ) : (
+    <div>
+
     </div>
     )
 }
