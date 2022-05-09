@@ -45,11 +45,10 @@ const Home = ({ user }) => {
                 <Modal 
                     isOpen={storageModal} 
                     onRequestClose={handleCloseStorageModal}
-                    className="addModal"
-                    overlayClassName="addOverlay"
+                    ariaHideApp={false}
                     >
                         <div>
-                            Modal Open
+                            <NewStorage />
                         </div>
                 </Modal> 
                 
@@ -70,11 +69,9 @@ const Home = ({ user }) => {
                 <Modal 
                     isOpen={bottleModal} 
                     onRequestClose={handleCloseBottleModal}
-                    className="addModal"
-                    overlayClassName="addOverlay">
-                        <div>
-                            Modal Open
-                        </div>
+                    ariaHideApp={false}
+                    >
+                    
                 </Modal>
             </div>
         </div>        

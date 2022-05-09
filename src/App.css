@@ -24,7 +24,7 @@ Button {
   text-decoration: none;
   transition: all 400ms cubic-bezier(.23, 1, 0.32, 1);
   touch-action: manipulation;
-  width: 50%;
+  width: 15vw;
 }
 
 Button:hover {
@@ -132,7 +132,6 @@ Button:active {
 }
 
 .loginButt {
-  width: 15vw;
   background-color: #fff;
 }
 
@@ -149,6 +148,10 @@ Button:active {
 .loginSubmit:disabled {
   cursor: not-allowed;
   background-color: #1A1A1A;
+}
+
+.NewStorage {
+  text-align: center;
 }
 
 .newUser {
@@ -188,6 +191,20 @@ p {
   border: #273952 solid 2px;
   border-radius: 10px;
   padding-bottom: 10px;
+}
+
+.storageDisplay {
+  margin: 15px;
+}
+
+.storageSubmit {
+  margin-top: 15px;
+  background-color: #273952;
+  color: #fff;
+}
+
+.storageSubmit:hover {
+  background-color: #38556A;
 }
 
 .WelcomePage {
