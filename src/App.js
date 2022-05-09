@@ -10,7 +10,7 @@ import Client from './services/api';
 
 function App() {
   const [user, setUser] = useState(null)
-  const [auth, setAuth] = useState(false)
+  const [userId, setUserId] =useState(null)
   
   useEffect(() => {
     const token = localStorage.getItem('JWT')
@@ -21,10 +21,8 @@ function App() {
   const CheckSession = async () => {
     try {
       const res = await Client.get('/user/session')
-      console.log(res.data)
       setUser(res.data.username)
-      if (user) {
-        setAuth(true)}
+      setUserId(res.data.id)
     }
     catch (error) {
       throw error
@@ -33,11 +31,11 @@ function App() {
 
   return (
     <div className="App">
-      <Header />
+      <Header user={user}/>
         <Routes>
           <Route path='/' element={<WelcomePage />} />
           <Route path='/register' element={<Register />} />
-          <Route path='/home' element={<Home user={user} auth={auth} />} />
+          <Route path='/home' element={<Home user={user}  />} />
         </Routes>
       <Footer />
     </div>

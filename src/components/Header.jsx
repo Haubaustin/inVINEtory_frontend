@@ -1,9 +1,15 @@
 
-const Header = () => {
+const Header = ({user}) => {
     
-    return (
+    return (user) ? (
     <div className="Header">
-        <h1 className="headerTitle">in<span className="headerSpan">VINE</span>tory</h1>
+        <h1 className="headerTitle">in<span className="headerSpan">VIN</span>tory</h1>
+    </div>
+    ) : (
+    <div>
+        <div className="Header">
+            <h1 className="headerTitle">in<span className="headerSpan">VIN</span>tory</h1>
+        </div>
     </div>
     )
 }

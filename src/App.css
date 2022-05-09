@@ -39,6 +39,25 @@ Button:active {
   transform: translateY(0);
 }
 
+.errorPage {
+  display: grid;
+  justify-items: center;
+  align-items: center;
+}
+
+.errorDiv {
+  border: #1A1A1A 3px solid;
+  padding: 20px;
+  border-radius: 10px;
+  background-color: #fff;
+  height: 30%;
+}
+
+.errorDiv > p {
+  margin-bottom: 15px;
+  color: red;
+}
+
 .Footer {
   height: 8vh;
   width: 100vw;
@@ -69,11 +88,42 @@ Button:active {
 }
 
 .headerTitle {
-  font-size: 9vh;
+  font-size: 7.5vw;
   color: white;
   margin: 0;
   font-weight: 1000;
   margin-left: 5px;
+}
+
+.headerWel {
+  color: #fff;
+  font-size: 1vw;
+}
+
+.Home {
+  display: grid;
+  grid-template-rows: repeat(2 1fr);
+  align-items: center;
+  justify-content: center;
+}
+
+.homeBottle, .homeStorage {
+  height: 90%;
+  width: 90vw;
+  background-color: aliceblue;
+  border:#273952 3px solid;
+  border-radius: 10px;
+  color: #38556A;
+  display: grid;
+  grid-template-columns: .7fr .3fr;
+}
+
+.homeStorageDisplay {
+  border-right: #273952ab 3px solid;
+}
+
+.homeBottleDisplay {
+  border-right: #273952ab 3px solid;
 }
 
 .loginButt {
@@ -142,7 +192,7 @@ p {
   justify-items: center;
 }
 
-.WelcomePage, .Home, .Register {
+.WelcomePage, .Home, .Register, .errorPage {
   height: 76vh;
 }
 

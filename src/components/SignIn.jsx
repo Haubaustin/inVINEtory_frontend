@@ -2,7 +2,7 @@ import Client from "../services/api.js"
 import { useState } from "react"
 import { useNavigate } from "react-router-dom"
 
-const SignIn = () => {
+const SignIn = (props) => {
     const [error, setError] = useState("")
     const navigate = useNavigate()
     const [data, setData] =useState({
@@ -23,7 +23,7 @@ const SignIn = () => {
         try {
             const res = await Client.post("/user/login", data)
             localStorage.setItem('JWT', res.data.token)
-            localStorage.setItem('user', res.data.user.username)
+            // localStorage.setItem('user', res.data.user.username)
             navigate('/home')
         }
         catch (error) {
