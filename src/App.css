@@ -95,7 +95,7 @@ Button:active {
 }
 
 .headerTitle {
-  font-size: 7.5vw;
+  font-size: 6vw;
   color: white;
   margin: 0;
   font-weight: 1000;
@@ -127,7 +127,7 @@ Button:active {
 }
 
 .homeBottle, .homeStorage, .homeAddDiv {
-  background-color: aliceblue;
+  background-color: #fff;
   border:#273952 3px solid;
   border-radius: 10px;
   color: #38556A;
@@ -218,6 +218,17 @@ Button:active {
   height: fit-content;
 }
 
+.NewBottle {
+  display: grid;
+  align-items: center;
+  justify-items: center;
+}
+
+.NewBottle > h4 {
+  color: #273952;
+  margin: 5px;
+}
+
 .NewStorage {
   text-align: center;
 }
@@ -271,6 +282,55 @@ p {
   justify-items: center;
 }
 
+.StoragePage {
+  display: grid;
+  grid-template-columns: .7fr .3fr;
+  grid-template-rows: .3fr .7fr;
+  grid-column-gap: 0px;
+  grid-row-gap: 0px;
+  justify-items: center;
+  align-items: center;
+  color: #38556A;
+
+}
+
+.StoragePageDisplay {
+  grid-area: 1 / 1 / 3 / 2;
+  background-color: #fff;
+  width: 90%;
+  min-height: 90%;
+  border-radius: 10px;
+  border: #273952 solid 2px;
+  display: grid;
+
+}
+
+.StoragePageAddBottle {
+  grid-area: 1 / 2 / 2 / 3;
+  background-color: #fff;
+  height: 50%;
+  width: 90%;
+  border-radius: 10px;
+  border: #273952 solid 2px;
+
+}
+
+.StoragePageSearch {
+  grid-area: 2 / 2 / 3 / 3;
+  background-color: #fff;
+  height: 90%;
+  width: 90%;
+  border-radius: 10px;
+  border: #273952 solid 2px;
+}
+
+.storageSpace {
+  border: 2px solid #273952;
+  margin: 5px;
+  border-radius: 10px;
+  min-height: 70px;
+}
+
 .storageSubmit {
   margin-top: 15px;
   background-color: #273952;
@@ -300,7 +360,7 @@ p {
 .welcomePageText {
   height: 90%;
   width: 80%;
-  background-color: aliceblue;
+  background-color: #fff;
   border:#273952 3px solid;
   border-radius: 10px;
   color: #38556A;

@@ -18,10 +18,11 @@ const NewBottle =() => {
 
 
     return (
-        <div>
+        <div className="NewBottle">
+            <h4>Add Bottle to Storage</h4>
             <FontAwesomeIcon 
                     icon={faPlusSquare} 
-                    size="7x" 
+                    size="4x" 
                     onClick={handleOpenBottleModal} />
                 <Modal 
                     isOpen={bottleModal} 

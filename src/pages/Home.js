@@ -36,6 +36,10 @@ const Home = ({ user }) => {
         SetStorageArea(res.data)
     }
 
+    // const getWineBottles = async () => {
+    //     const res = await Client.get(`storage/${user}`)
+    // }
+
 
     return (user) ? (
     <div className="Home">
