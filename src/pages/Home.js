@@ -14,7 +14,6 @@ const Home = ({ user }) => {
     const [storageArea, SetStorageArea] =useState([])
     const {userId} = useParams()
     const [storageModal, setStorageModal]=useState(false)
-    const [bottleModal, setBottleModal]=useState(false)
 
     useEffect(() => {
         getStorageAreas()
@@ -24,18 +23,13 @@ const Home = ({ user }) => {
         setStorageModal(true)
     }
 
-    const handleOpenBottleModal = () => {
-        setBottleModal(true)
-    }
+    
 
     const handleCloseStorageModal = () => {
         setStorageModal(false)
     }
 
-    const handleCloseBottleModal = () => {
-        setBottleModal(false)
-    }
-
+    
     const getStorageAreas = async () => {
         const res = await Client.get(`storage/${userId}/all`)
         console.log(res)
@@ -72,7 +66,8 @@ const Home = ({ user }) => {
                 <FontAwesomeIcon 
                     icon={faPlusSquare} 
                     size="7x" 
-                    onClick={handleOpenStorageModal}/>
+                    onClick={handleOpenStorageModal}
+                    className="faNewStorage"/>
                 <Modal 
                     isOpen={storageModal} 
                     onRequestClose={handleCloseStorageModal}
@@ -82,17 +77,6 @@ const Home = ({ user }) => {
                             <NewStorage />
                         </div>
                 </Modal> 
-                <h2 className="homeAddTitle">Add More Bottles</h2>
-                <FontAwesomeIcon 
-                    icon={faPlusSquare} 
-                    size="7x" 
-                    onClick={handleOpenBottleModal} />
-                <Modal 
-                    isOpen={bottleModal} 
-                    onRequestClose={handleCloseBottleModal}
-                    ariaHideApp={false}
-                    >
-                </Modal>
             </div>
         </div>
     </div>

@@ -32,7 +32,7 @@ function App() {
 
   return (
     <div className="App">
-      <Header user={user}/>
+      <Header user={user} userId={userId}/>
         <Routes>
           <Route path='/' element={<WelcomePage />} />
           <Route path='/register' element={<Register />} />

@@ -3,7 +3,7 @@
 const StoragePage = () => {
 
     return (
-        <div>
+        <div className="StoragePage">
 
         </div>
     )
