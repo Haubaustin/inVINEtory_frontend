@@ -7,6 +7,7 @@ import Register from "./pages/Register"
 import Home from './pages/Home'
 import { useEffect, useState } from 'react'
 import Client from './services/api';
+import StoragePage from './pages/StoragePage';
 
 function App() {
   const [user, setUser] = useState(null)
@@ -36,6 +37,7 @@ function App() {
           <Route path='/' element={<WelcomePage />} />
           <Route path='/register' element={<Register />} />
           <Route path={`/:userId/home`} element={<Home user={user}  />} />
+          <Route path={`/:userId/storage/:storage_id`} element={<StoragePage />} />
         </Routes>
       <Footer />
     </div>

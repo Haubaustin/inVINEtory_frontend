@@ -1,16 +1,24 @@
-import { useNavigate } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {faPlusSquare} from "@fortawesome/free-regular-svg-icons"
 import Modal from 'react-modal';
 import NewStorage from "../components/NewStorage";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
+import Client from "../services/api";
 
 
 
 const Home = ({ user }) => {
     const navigate = useNavigate()
+    const [storageArea, SetStorageArea] =useState([])
+    const {userId} = useParams()
     const [storageModal, setStorageModal]=useState(false)
     const [bottleModal, setBottleModal]=useState(false)
+
+    useEffect(() => {
+        getStorageAreas()
+    }, [])
 
     const handleOpenStorageModal = () => {
         setStorageModal(true)
@@ -28,14 +36,37 @@ const Home = ({ user }) => {
         setBottleModal(false)
     }
 
+    const getStorageAreas = async () => {
+        const res = await Client.get(`storage/${userId}/all`)
+        console.log(res)
+        SetStorageArea(res.data)
+    }
+
 
     return (user) ? (
     <div className="Home">
         <div className="homeStorage">
-            <div className="homeStorageDisplay">
+            <div className="homeStorageComp">
                 <h2>{user}'s Storage</h2>
-                {/* API  call to list/display user's storage */}
+                <div className="storageDisplayCont">
+                {storageArea && storageArea.map((sto) => (
+                    <div key={sto.id} className="homeStorageDisplay">
+                    <Link to={`/${userId}/storage/${sto.id}`}>
+                        <h4>{sto.name}</h4>
+                    </Link>
+                    </div>
+                ))}
+                </div>
             </div>
+        </div>
+        <div className="homeBottle">
+            <div className="homeBottleDisplay">
+                <h2>{user}'s Bottles</h2>
+                {/* API  call to list/display user's bottles */}
+
+            </div>
+        </div>        
+        <div className="homeAddDiv">
             <div className="homeAdd">
                 <h2 className="homeAddTitle">Add New Storage</h2>
                 <FontAwesomeIcon 
@@ -51,16 +82,6 @@ const Home = ({ user }) => {
                             <NewStorage />
                         </div>
                 </Modal> 
-                
-            </div>
-        </div>
-        <div className="homeBottle">
-            <div className="homeBottleDisplay">
-                <h2>{user}'s Bottles</h2>
-                {/* API  call to list/display user's bottles */}
-
-            </div>
-            <div className="homeAdd">
                 <h2 className="homeAddTitle">Add More Bottles</h2>
                 <FontAwesomeIcon 
                     icon={faPlusSquare} 
@@ -71,10 +92,9 @@ const Home = ({ user }) => {
                     onRequestClose={handleCloseBottleModal}
                     ariaHideApp={false}
                     >
-                    
                 </Modal>
             </div>
-        </div>        
+        </div>
     </div>
     ) : (
     <div className="errorPage">
