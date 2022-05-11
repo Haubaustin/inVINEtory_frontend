@@ -1,9 +1,10 @@
 import { Link } from "react-router-dom"
 
-const Header = ({user, userId}) => {
+const Header = ({user, userId, setUser}) => {
     
     const handleLogout = () => {
         localStorage.clear()
+        setUser(null)
     }
 
     return (user) ? (
