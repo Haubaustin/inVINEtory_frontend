@@ -2,6 +2,11 @@ import NewBottle from "../components/NewBottle"
 import { useEffect, useState } from "react";
 import Client from "../services/api";
 import { useParams } from "react-router-dom";
+import BottleCard from '../components/BottleCard'
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faWineBottle } from "@fortawesome/free-solid-svg-icons"
+import BubbleChartIcon from '@mui/icons-material/BubbleChart';
+import Search from "../components/Search";
 
 let divStyle = {}
 
@@ -9,13 +14,11 @@ const StoragePage = () => {
     const [data, setData] = useState([])
     const { userId } = useParams()
     const {storage_id} =useParams()
-    const [bottles, setBottle] =useState()
 
     const storageData = async () => {
         await Client.get(`/storage/${userId}/find/${storage_id}`)
         .then((res) => {
-            console.log(res.data.Bottles)
-            setBottle(res.data.Bottles)
+            console.log(res)
             divStyle = {
                 gridTempalateColumns: res.data.columns,
                 gridTemplateRows: res.data.rows
@@ -27,42 +30,7 @@ const StoragePage = () => {
     function twoDimensionArray(a, b, c) {
         let arr = [];
         let bottle = 0
-        let bo =[
-            {
-            "id": 24,
-            "name": "Calc GSM 11",
-            "winery": "Calcareous",
-            "region": "Paso",
-            "vintage": "2017",
-            "varietal": "GSM",
-            "still": true,
-            "row": 1,
-            "column": 1,
-            "color": "red",
-            "notes": "Is pretty Good",
-            "user_id": 30,
-            "storage_id": 20,
-            "createdAt": "2022-05-11T04:58:18.634Z",
-            "updatedAt": "2022-05-11T04:58:18.634Z"
-        },
-        {
-            "id": 23,
-            "name": "Calc GSM",
-            "winery": "Calcareous",
-            "region": "Paso",
-            "vintage": "2017",
-            "varietal": "GSM",
-            "still": true,
-            "row": 2,
-            "column": 2,
-            "color": "red",
-            "notes": "Is pretty Good",
-            "user_id": 30,
-            "storage_id": 20,
-            "createdAt": "2022-05-11T04:57:35.591Z",
-            "updatedAt": "2022-05-11T04:57:35.591Z"
-        } 
-    ]
+        
         // creating two dimensional array
         for (let i = 0; i< a; i++) {
             for(let j = 0; j< b; j++) {
@@ -74,37 +42,26 @@ const StoragePage = () => {
         for (let i = 0; i< a; i++) {
             for(let j = 0; j< b; j++) {
                 arr[i][j] = [i,j]
-                // console.log([c[0].row, c[0].column])
-                // console.log(JSON.stringify([i,j])===JSON.stringify([c[0].row, c[0].column]))
-                // if (JSON.stringify([i,j])===JSON.stringify([c[0].row, c[0].column])) {
-                // if (JSON.stringify([i,j])===JSON.stringify([c[i].row, c[j].column])) {
-                // if (JSON.stringify([i,j])===JSON.stringify([c[j].row, c[j].column])) {
-                // if (JSON.stringify([i,j])===JSON.stringify([c[i].row, c[j].column])) {
-                if (JSON.stringify([i,j])===JSON.stringify([c[bottle].row, c[bottle].column])) { 
-                    arr[i][j] = c[bottle].name
-                    if (bottle  < c.length-1) {
-                            bottle++
-                            console.log(bottle)
-                        }
+                if (c.length === 0) {
+                    arr[i][j] = <NewBottle rowN={i} columnN={j} storageData={storageData} />
+                } else {
+                    if (JSON.stringify([i,j])===JSON.stringify([c[bottle].row, c[bottle].column])) { 
+                        arr[i][j] = <BottleCard bottle={c[bottle]} />
+                        if (bottle  < c.length-1) {
+                                bottle++
+                            }
+                    }
+                    else {
+                        arr[i][j] = <NewBottle rowN={i} columnN={j} storageData={storageData} />
+                    }
                 }
-                else {
-                    arr[i][j] = <NewBottle row={arr[i]} column={arr[j]} />
-                }
-            //   arr[i][j] = console.log([i,j])
-            //     if (arr[i][j] === [i,j]) {
-            //     console.log("Yes")
-            //   }
-                // if (arr[i] == c[0].row && arr[j] == c[0].column) {
-                //     console.log("match at " + [i][j])
-                // }
-        }
+            }
         }
         return arr;
     }
 
    useEffect(() => {
     storageData()
-    console.log(data)
    }, [])
 
 
@@ -119,12 +76,15 @@ const StoragePage = () => {
                 ))
                  ))}
             </div>
-            {/* <div className="StoragePageAddBottle">
-                <NewBottle />
-            </div> */}
+            <div className="StoragePageLegend">
+                <h3>Legend</h3>
+                <FontAwesomeIcon icon={faWineBottle} size="2x" style={{color: `#923a45`, stroke: 'black', strokeWidth: "20px"}}/> = Red<br/>
+                <FontAwesomeIcon icon={faWineBottle} size="2x" style={{color: `#EEEDC4`, stroke: 'black', strokeWidth: "20px"}}/> = White<br/>
+                <FontAwesomeIcon icon={faWineBottle} size="2x" style={{color: `#E4A598`, stroke: 'black', strokeWidth: "20px"}}/> = Rosé<br/>
+                <BubbleChartIcon sx={{ color: "#F7E7CE", stroke: 'black' }}/> = Champagne/Sparkling
+            </div>
             <div className="StoragePageSearch">
-                <h4>Search</h4>
-
+                <Search />
             </div>
         </div>
     )

@@ -25,7 +25,7 @@ const SignIn = () => {
             localStorage.setItem('JWT', res.data.token)
             // console.log(res.data.)
             // localStorage.setItem('user', res.data.user.username)
-            navigate(`/${res.data.user.id}/home`)
+            window.location.href=(`/${res.data.user.id}/home`)
         }
         catch (error) {
             setError(error.response.data.message)

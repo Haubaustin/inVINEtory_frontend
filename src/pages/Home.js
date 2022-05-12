@@ -65,7 +65,6 @@ const Home = ({ user }) => {
             </div>
         </div>        
         <div className="homeAddDiv">
-            <div className="homeAdd">
                 <h2 className="homeAddTitle">Add New Storage</h2>
                 <FontAwesomeIcon 
                     icon={faPlusSquare} 
@@ -81,7 +80,9 @@ const Home = ({ user }) => {
                             <NewStorage />
                         </div>
                 </Modal> 
-            </div>
+        </div>
+        <div className="homeSearch">
+
         </div>
     </div>
     ) : (

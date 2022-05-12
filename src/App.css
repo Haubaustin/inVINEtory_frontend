@@ -1,8 +1,19 @@
+.addBottle {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+}
+
 .App {
   text-align: center;
   background: rgb(76,105,131);
   background: linear-gradient(90deg, rgba(76,105,131,1) 0%, rgba(69,94,116,1) 48%, rgba(76,105,131,1) 100%);
   height: 100%;
+}
+
+.BottleCard > h3 {
+  margin: 0;
 }
 
 Button {
@@ -76,7 +87,7 @@ Button:active {
 .Header {
   background: rgb(39,57,82);
   background: linear-gradient(90deg, rgba(39,57,82,1) 0%, rgba(48,64,85,1) 48%, rgba(39,57,82,1) 100%);
-  height: 15vh;
+  height: 12vh;
   display: flex;
   border-bottom: 3px solid #38556A;
   width: 100%;
@@ -95,7 +106,7 @@ Button:active {
 }
 
 .headerTitle {
-  font-size: 6vw;
+  font-size: 7vw;
   color: white;
   margin: 0;
   font-weight: 1000;
@@ -110,7 +121,7 @@ Button:active {
 
 .Home {
   display: grid;
-  grid-template-columns: .7fr .25fr;
+  grid-template-columns: .7fr .3fr;
   grid-template-rows: repeat(2, 1fr);
   grid-column-gap: 0px;
   grid-row-gap: 0px;
@@ -119,14 +130,10 @@ Button:active {
 }
 
 .homeAddDiv {
-  grid-area: 1 / 2 / 3 / 3; 
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-content: center;
+  grid-area: 1 / 2 / 2 / 2; 
 }
 
-.homeBottle, .homeStorage, .homeAddDiv {
+.homeBottle, .homeStorage, .homeSearch, .homeAddDiv {
   background-color: #fff;
   border:#273952 3px solid;
   border-radius: 10px;
@@ -261,6 +268,13 @@ p {
   border-bottom-left-radius: 0;
 }
 
+.searchSubmit {
+  font-size: 12px;
+  min-height: 30px;
+  padding: 12px 10px;
+  width: 10vw;
+}
+
 .SignIn, .SignUp {
   background-color: #fff;
   min-height: 25vh;
@@ -270,6 +284,11 @@ p {
   border: #273952 solid 2px;
   border-radius: 10px;
   padding-bottom: 10px;
+}
+
+.storageBottle path {
+  stroke: black;
+  stroke-width: 20px;
 }
 
 .storageDisplay {
@@ -285,34 +304,39 @@ p {
 .StoragePage {
   display: grid;
   grid-template-columns: .7fr .3fr;
-  grid-template-rows: .3fr .7fr;
+  grid-template-rows: .2fr 1fr;
   grid-column-gap: 0px;
   grid-row-gap: 0px;
   justify-items: center;
   align-items: center;
   color: #38556A;
-
+  margin: 10px 0;
 }
 
 .StoragePageDisplay {
   grid-area: 1 / 1 / 3 / 2;
-  background-color: #fff;
+  background-color: aliceblue;
   width: 90%;
   min-height: 90%;
   border-radius: 10px;
   border: #273952 solid 2px;
   display: grid;
-
+  align-self: flex-start;
 }
 
-.StoragePageAddBottle {
+.StoragePageLegend {
   grid-area: 1 / 2 / 2 / 3;
   background-color: #fff;
-  height: 50%;
+  height: fit-content;
+  padding-bottom: 10px;
   width: 90%;
   border-radius: 10px;
   border: #273952 solid 2px;
+  align-self: flex-start;
+}
 
+.StoragePageLegend > h3 {
+  margin: 5px;
 }
 
 .StoragePageSearch {
@@ -322,6 +346,7 @@ p {
   width: 90%;
   border-radius: 10px;
   border: #273952 solid 2px;
+  align-self: flex-start;
 }
 
 .storageSpace {
@@ -329,6 +354,11 @@ p {
   margin: 5px;
   border-radius: 10px;
   min-height: 70px;
+  background-color: #fff;
+  padding: 5px;
+  display: grid;
+  justify-items: center;
+  align-items: center;
 }
 
 .storageSubmit {
