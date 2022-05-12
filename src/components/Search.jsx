@@ -1,21 +1,32 @@
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { useState } from "react"
-import Client from "../services/api"
+import { useParams } from "react-router-dom"
+import { faWineBottle } from "@fortawesome/free-solid-svg-icons"
+import Cthent from "../services/api"
 
 const Search = () => {
+    const { storage_id } =useParams()
     const [data, setData] =useState({
         search_query: ""
     })
+    const [bottle, setBottle] =useState()
 
     const handleChange = (e) => {
         setData({
             ...data,
             [e.target.name]: e.target.value
         })
+        console.log(storage_id)
+        console.log(data)
     }
 
     const findAny = async (e) => {
         e.preventDefault()
-        const query = await Client.get(`/bottle/`)
+        await Cthent.get(`/bottle/findinstorage/${storage_id}/${data.search_query}`)
+        .then((res)=> {
+            console.log(res)
+            setBottle(res.data)
+        })
     }
 
 
@@ -23,15 +34,29 @@ const Search = () => {
         <div>
             <div>
                 <h3>Search</h3>
-                <form>
-                    <input type ='text' name ="query" placeholder="Search name, region, varietal..." value={data.search_query} onChange={handleChange} />
+                <p>Search current storage by any characteristic of the bottle</p>
+                <form onSubmit={findAny}>
+                    <input type ='text' name ="search_query" placeholder="eg: Red, Paso Robles, Cab" value={data.search_query} onChange={handleChange} />
                     <br/>
                     <br/>
                     <button className="searchSubmit">Search</button>
                 </form>
             </div>
-            <div>
-
+            <div className="storageSearchResults">
+                    <table className="results">
+                        <tr>
+                            <th>Name:</th>
+                            <th>Year:</th>
+                            <th>Row/Col:</th>
+                        </tr>
+                {bottle && bottle.map((bot)=> (
+                        <tr>
+                            <td>{bot.name}</td>
+                            <td>{bot.vintage}</td>
+                            <td>{parseInt(bot.row)+1}/{parseInt(bot.column)+1}</td>
+                        </tr>
+                ))}
+                        </table>
             </div>
         </div>
     )

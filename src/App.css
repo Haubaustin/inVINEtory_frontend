@@ -263,6 +263,11 @@ p {
   font-weight: 700;
 }
 
+.results {
+  padding: 5px;
+  margin: 5px;
+}
+
 .returnUser {
   border-top-left-radius: 0;
   border-bottom-left-radius: 0;
@@ -273,6 +278,7 @@ p {
   min-height: 30px;
   padding: 12px 10px;
   width: 10vw;
+  margin-bottom: 10px;
 }
 
 .SignIn, .SignUp {
@@ -337,6 +343,12 @@ p {
 
 .StoragePageLegend > h3 {
   margin: 5px;
+}
+
+.storageSearchResults {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
 }
 
 .StoragePageSearch {
