@@ -23,15 +23,12 @@ const NewStorage =() => {
             [e.target.name]: e.target.value
         })
         setStorage(twoDimensionArray(data.rows, data.columns))
-        console.log(storage)
-        console.log(data)   
     }
     
     const handleSubmit= async (e) => {
         try {
             e.preventDefault()
             const res = await Client.post(`/storage/${userId}/create`, data)
-            console.log(res)
             setMessage(res.data.message)
             setTimeout(() => {
                 setMessage("")
@@ -71,10 +68,34 @@ const NewStorage =() => {
         <div className="NewStorage">
             <h2>Create a New Storage Space</h2>
             <form onSubmit={handleSubmit}>
-                <input type="number" placeholder="Rows" name="rows" min="0" onChange={handleChange} value={data.rows}/>  <br/>
-                <input type="number" placeholder="Columns" name="columns" min="0" onChange={handleChange} value={data.columns}/> <br/>
-                <input type="text" placeholder="Name" name="name" onChange={handleChange} value={data.name}/> <br/>
-                <button className="storageSubmit" disabled={!data.rows || !data.columns || !data.name}>Submit</button>
+                <input 
+                    type="number" 
+                    placeholder="Rows" 
+                    name="rows" 
+                    min="0" 
+                    onChange={handleChange} 
+                    value={data.rows}/>  
+                <br/>
+                <input 
+                    type="number" 
+                    placeholder="Columns" 
+                    name="columns" 
+                    min="0" 
+                    onChange={handleChange} 
+                    value={data.columns}/> 
+                <br/>
+                <input 
+                    type="text" 
+                    placeholder="Name" 
+                    name="name" 
+                    onChange={handleChange} 
+                    value={data.name}/> 
+                <br/>
+                <button 
+                    className="storageSubmit" 
+                    disabled={!data.rows || !data.columns || !data.name}>
+                        Submit
+                </button>
             </form>
             {message}
             <h3>{data.name}: {data.rows*data.columns} Total Bottles</h3>

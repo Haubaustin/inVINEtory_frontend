@@ -13,10 +13,14 @@ const Header = ({user, userId, setUser}) => {
         <div className="Nav">
             <h2>Hello, {user} </h2>
             <div className="links">
-                <Link to={`/${userId}/home`} className="homeLink">
+                <Link 
+                    to={`/${userId}/home`} 
+                    className="homeLink">
                     <h2>| Home |</h2>
                 </Link>
-                <Link to={"/"} className="homeLink" onClick={handleLogout}>
+                <Link 
+                    to={"/"} className="homeLink" 
+                    onClick={handleLogout}>
                     <h2>| Logout |</h2>
                 </Link>
             </div>
@@ -25,7 +29,13 @@ const Header = ({user, userId, setUser}) => {
     ) : (
     <div>
         <div className="Header">
-            <h1 className="headerTitle">in<span className="headerSpan">VIN</span>tory</h1>
+            <h1 className="headerTitle">
+                in
+                <span className="headerSpan">
+                    VIN
+                </span>
+                tory
+            </h1>
         </div>
     </div>
     )

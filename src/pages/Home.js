@@ -6,6 +6,8 @@ import NewStorage from "../components/NewStorage";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import Client from "../services/api";
+import HomeSearch from "../components/HomeSearch";
+import HomeSearchResults from "../components/HomeSearchResults";
 
 
 
@@ -60,8 +62,7 @@ const Home = ({ user }) => {
         <div className="homeBottle">
             <div className="homeBottleDisplay">
                 <h2>{user}'s Bottles</h2>
-                {/* API  call to list/display user's bottles */}
-
+                <HomeSearchResults />
             </div>
         </div>        
         <div className="homeAddDiv">
@@ -76,13 +77,12 @@ const Home = ({ user }) => {
                     onRequestClose={handleCloseStorageModal}
                     ariaHideApp={false}
                     >
-                        <div>
                             <NewStorage />
-                        </div>
                 </Modal> 
         </div>
         <div className="homeSearch">
-
+            <h2>Search All Wines</h2>
+            <HomeSearch />
         </div>
     </div>
     ) : (

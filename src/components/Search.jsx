@@ -1,8 +1,6 @@
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { useState } from "react"
 import { useParams } from "react-router-dom"
-import { faWineBottle } from "@fortawesome/free-solid-svg-icons"
-import Cthent from "../services/api"
+import Client from "../services/api"
 
 const Search = () => {
     const { storage_id } =useParams()
@@ -16,15 +14,12 @@ const Search = () => {
             ...data,
             [e.target.name]: e.target.value
         })
-        console.log(storage_id)
-        console.log(data)
     }
 
     const findAny = async (e) => {
         e.preventDefault()
-        await Cthent.get(`/bottle/findinstorage/${storage_id}/${data.search_query}`)
+        await Client.get(`/bottle/findinstorage/${storage_id}/${data.search_query}`)
         .then((res)=> {
-            console.log(res)
             setBottle(res.data)
         })
     }
@@ -50,7 +45,7 @@ const Search = () => {
                             <th>Row/Col:</th>
                         </tr>
                 {bottle && bottle.map((bot)=> (
-                        <tr>
+                        <tr className="resultsRow">
                             <td>{bot.name}</td>
                             <td>{bot.vintage}</td>
                             <td>{parseInt(bot.row)+1}/{parseInt(bot.column)+1}</td>

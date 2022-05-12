@@ -78,26 +78,55 @@ const NewBottle =({ rowN, columnN, storageData}) => {
                         <h2>Add New Bottle</h2>
                         <form onSubmit={handleSubmit}>
                             <label>Name:</label> <br/>
-                                <input type="text" name="name" placeholder="eg: Screaming Eagle" value={data.name} onChange={handleChange}/>
+                                <input 
+                                    type="text" 
+                                    name="name" 
+                                    placeholder="eg: Screaming Eagle" 
+                                    value={data.name} 
+                                    onChange={handleChange}/>
                             <br/>
                             <label> Vintage:    <br/>
-                                <input type="text" name="vintage" placeholder="eg: 2015" value={data.vintage} onChange={handleChange}/>
+                                <input 
+                                    type="text" 
+                                    name="vintage" 
+                                    placeholder="eg: 2015" 
+                                    value={data.vintage} 
+                                    onChange={handleChange}/>
                             </label>
                             <br/>
                             <label>Varietal:     <br/>
-                                <input type="text" name="varietal" placeholder="eg: Cabernet Sauvignon" value={data.varietal} onChange={handleChange}/>
+                                <input 
+                                    type="text" 
+                                    name="varietal" 
+                                    placeholder="eg: Cabernet Sauvignon" 
+                                    value={data.varietal} 
+                                    onChange={handleChange}/>
                             </label>
                             <br/>
                             <label>Winery:     <br/>
-                                <input type="text" name="winery" placeholder="eg: Screaming Eagle" value={data.winery} onChange={handleChange}/>
+                                <input 
+                                    type="text" 
+                                    name="winery" 
+                                    placeholder="eg: Screaming Eagle" 
+                                    value={data.winery} 
+                                    onChange={handleChange}/>
                             </label>
                             <br/>
                             <label>Region:     <br/>
-                                <input type="text" name="region" placeholder="eg: Napa Valley" value={data.region} onChange={handleChange}/>
+                                <input 
+                                    type="text" 
+                                    name="region" 
+                                    placeholder="eg: Napa Valley" 
+                                    value={data.region} 
+                                    onChange={handleChange}/>
                             </label>
                             <br/>
                             <label> Tasting Notes:    <br/>
-                                <input type="text" name="notes" placeholder="eg: earthy, medium to full body, black and red fruit layers " value={data.notes} onChange={handleChange}/>
+                                <input 
+                                    type="text" 
+                                    name="notes" 
+                                    placeholder="eg: earthy, medium to full body, black and red fruit layers " 
+                                    value={data.notes} onChange={handleChange}/>
                             </label>
                             <br/>
                             <label>Color:     <br/>

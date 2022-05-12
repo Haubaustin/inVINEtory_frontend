@@ -23,11 +23,17 @@ const BottleCard = ({ bottle }) => {
     return (
         <div className="BottleCard">
             <span >
-                <FontAwesomeIcon icon={faWineBottle} size="2x" style={{color: `${divStyle.color}`}} className="storageBottle"/>
-                <span hidden={bottle.still}> <BubbleChartIcon sx={{ color: "#F7E7CE", stroke: 'black' }} /> </span>
+                <FontAwesomeIcon 
+                    icon={faWineBottle} size="2x" 
+                    style={{color: `${divStyle.color}`}} 
+                    className="storageBottle"/>
+                <span hidden={bottle.still}> 
+                    <BubbleChartIcon sx={{ color: "#F7E7CE", stroke: 'black' }} /> 
+                </span>
             </span>
             <h3>{bottle.name}</h3>
-            {bottle.vintage}
+                {bottle.winery}<br/>
+                {bottle.vintage}
         </div>
     )
 }
