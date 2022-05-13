@@ -7,7 +7,7 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import Client from "../services/api";
 import HomeSearch from "../components/HomeSearch";
-import HomeSearchResults from "../components/HomeSearchResults";
+import HomeSearchCard from "../components/HomeSearchCard";
 
 
 
@@ -16,6 +16,8 @@ const Home = ({ user }) => {
     const [storageArea, SetStorageArea] =useState([])
     const {userId} = useParams()
     const [storageModal, setStorageModal]=useState(false)
+    const [results, setResults] = useState()
+
 
     useEffect(() => {
         getStorageAreas()
@@ -25,22 +27,24 @@ const Home = ({ user }) => {
         setStorageModal(true)
     }
 
-    
-
     const handleCloseStorageModal = () => {
         setStorageModal(false)
     }
-
     
     const getStorageAreas = async () => {
         const res = await Client.get(`storage/${userId}/all`)
-        console.log(res)
         SetStorageArea(res.data)
     }
 
-    // const getWineBottles = async () => {
-    //     const res = await Client.get(`storage/${user}`)
-    // }
+    const handleSubmit = async (x) => {
+        const res = await Client.get(`/bottle/findall/${userId}/${x}`)
+        setResults(res.data)
+        console.log(res.data)
+    }
+
+    const clearResults = () => {
+        setResults()
+    }
 
 
     return (user) ? (
@@ -62,7 +66,9 @@ const Home = ({ user }) => {
         <div className="homeBottle">
             <div className="homeBottleDisplay">
                 <h2>{user}'s Bottles</h2>
-                <HomeSearchResults />
+                {results && results.map((res, i) => (
+                    <HomeSearchCard bottle={res} key={i} />
+                ))}
             </div>
         </div>        
         <div className="homeAddDiv">
@@ -82,7 +88,9 @@ const Home = ({ user }) => {
         </div>
         <div className="homeSearch">
             <h2>Search All Wines</h2>
-            <HomeSearch />
+            <HomeSearch 
+                handleSubmit={handleSubmit} 
+                clearResults={clearResults}/>
         </div>
     </div>
     ) : (
@@ -90,7 +98,7 @@ const Home = ({ user }) => {
         <div className="errorDiv">
             <h3>Ope!</h3>
             <p>You need to be logged in to access this page don't you know</p>
-            <button classname="" onClick={()=> navigate('/register')}>Login</button>
+            <button className="" onClick={()=> navigate('/register')}>Login</button>
         </div>
     </div>
     )

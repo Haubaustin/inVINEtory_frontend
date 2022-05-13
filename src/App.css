@@ -106,7 +106,7 @@ Button:active {
 }
 
 .headerTitle {
-  font-size: 7vw;
+  font-size: 80px;
   color: white;
   margin: 0;
   font-weight: 1000;
@@ -153,6 +153,43 @@ Button:active {
 
 .homeLink > h2 {
   margin: 0;
+}
+
+.HomeSearchCard {
+  display: grid;
+  grid-template-columns: .5fr 1fr .5fr;
+  grid-template-rows: repeat(2, .5fr);
+  grid-row-gap: 10px;
+  border-bottom: #1A1A1A dotted 1px;
+  padding: 5px 0
+}
+
+.homeSearchDetails {
+  grid-area: 1 / 3 / 3 / 4; 
+  margin: 0;
+
+}
+
+.homeSearchIcon {
+  grid-area: 1 / 1 / 3 / 2;
+  display: flex;
+  justify-content: center;
+  align-content: center;
+}
+
+.homeSearchLoc {
+  grid-area: 2 / 2 / 3 / 3;
+  margin: 0;
+
+}
+
+.homeSearchWine {
+  grid-area: 1 / 2 / 2 / 3;
+  margin: 0;
+}
+
+.homeSearchWineryRegion {
+  grid-area: 2 / 3 / 3 / 4;
 }
 
  .homeStorage::-webkit-scrollbar, .homeBottle::-webkit-scrollbar {
@@ -396,7 +433,7 @@ p {
 }
 
 .WelcomePage, .Home, .Register, .errorPage, .StoragePage {
-  min-height: 77vh;
+  min-height: 80vh;
 }
 
 .welcomePageText {
