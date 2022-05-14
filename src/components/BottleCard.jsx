@@ -4,7 +4,7 @@ import BubbleChartIcon from '@mui/icons-material/BubbleChart';
 
 let divStyle ={}
 
-const BottleCard = ({ bottle }) => {
+const BottleCard = ({ bottle, setDetBottle, setViewBottle }) => {
     if (bottle.color.toLowerCase() === "red") {
         divStyle = {
             color: "#923a45"
@@ -21,7 +21,11 @@ const BottleCard = ({ bottle }) => {
     }
 
     return (
-        <div className="BottleCard">
+        <div className="BottleCard" onClick={function() {
+                setViewBottle(true)
+            return  setDetBottle(bottle)
+
+        }}>
             <span >
                 <FontAwesomeIcon 
                     icon={faWineBottle} size="2x" 

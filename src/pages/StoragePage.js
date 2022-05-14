@@ -7,6 +7,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faWineBottle, faEdit, faRotateLeft, faTrashCan } from "@fortawesome/free-solid-svg-icons"
 import BubbleChartIcon from '@mui/icons-material/BubbleChart';
 import Search from "../components/Search";
+import BottleDetails from "../components/BottleDetails";
 
 let divStyle = {}
 
@@ -14,15 +15,19 @@ const StoragePage = () => {
     const [data, setData] = useState([])
     const [storage, setStorage]=useState({})
     const [edit, setEdit]=useState(false)
-
+    const [viewBottle, setViewBottle] = useState(false)
+    const [detBottle, setDetBottle] =useState()
+    
     const { userId } = useParams()
-    const {storage_id} =useParams()
+    const {storage_id} = useParams()
   
     const navigate = useNavigate()
 
+    useEffect(() => {
+        storageData()
+       }, [])
 
 //##### Create Storage Area, 2d Array
-
     const storageData = async () => {
         await Client.get(`/storage/${userId}/find/${storage_id}`)
         .then((res) => {
@@ -54,7 +59,7 @@ const StoragePage = () => {
                     arr[i][j] = <NewBottle rowN={i} columnN={j} storageData={storageData} />
                 } else {
                     if (JSON.stringify([i,j])===JSON.stringify([c[bottle].row, c[bottle].column])) { 
-                        arr[i][j] = <BottleCard bottle={c[bottle]} />
+                        arr[i][j] = <BottleCard bottle={c[bottle]}  setViewBottle={() => {setViewBottle(true)}} setDetBottle={setDetBottle} />
                         if (bottle  < c.length-1) {
                                 bottle++
                             }
@@ -68,14 +73,9 @@ const StoragePage = () => {
         return arr;
     }
 
-   useEffect(() => {
-    storageData()
-   }, [])
-
    //######   Edit Storage
 
    //Edit Storage
-
    const handleChange = (e) => {
     setStorage({
         ...storage,
@@ -98,6 +98,7 @@ const StoragePage = () => {
         }
     }
 
+    //Toggle Edit Mode
    const editMode = () => {
        if (!edit) {
             return <div className="StoragePageTitle">
@@ -141,25 +142,40 @@ const StoragePage = () => {
                                     Submit Change(s)
                             </button>
                         </form>
-                        <FontAwesomeIcon icon={faRotateLeft} size="2x" className="SPTEdit" onClick={()=> {setEdit(false)}}/>
-                        <FontAwesomeIcon icon={faTrashCan} size="2x" className="SPTEdit" onClick={handleDelete}/>
+                        <FontAwesomeIcon 
+                            icon={faRotateLeft} 
+                            size="2x" 
+                            className="SPTEdit"
+                            onClick={()=> {setEdit(false)}}/>
+                        <FontAwesomeIcon 
+                            icon={faTrashCan} 
+                            size="2x" 
+                            className="SPTEdit"
+                            onClick={handleDelete}/>
                     </div>
        }
    }
-  
 
-
+   //#### Storage Display/Bottle Expanded Display
+   const displayBottleDetails = () => {
+       if (!viewBottle) {
+        return  <div className="StoragePageDisplay" style={{gridTemplateColumns: `repeat(${divStyle.gridTempalateColumns}, 1fr)`, gridTemplateRows: `repeat(${divStyle.gridTemplateRows}, 1fr}` }}>
+                    {data && data.map((wine) => (
+                        wine.map((column) => (
+                            <div className="storageSpace">{column}</div>
+                        ))
+                    ))}
+                </div>
+       }
+       else {
+        return <BottleDetails bottle={detBottle} setViewBottle={setViewBottle}/>
+        }
+   }
 
     return (
         <div className="StoragePage">
                 {editMode()}
-            <div className="StoragePageDisplay" style={{gridTemplateColumns: `repeat(${divStyle.gridTempalateColumns}, 1fr)`, gridTemplateRows: `repeat(${divStyle.gridTemplateRows}, 1fr}` }}>
-            {data && data.map((wine) => (
-                wine.map((column) => (
-                    <div className="storageSpace">{column}</div>
-                ))
-                 ))}
-            </div>
+                {displayBottleDetails()}
             <div className="StoragePageLegend">
                 <h3>Legend</h3>
                 <FontAwesomeIcon icon={faWineBottle} size="2x" style={{color: `#923a45`, stroke: 'black', strokeWidth: "20px"}}/> = Red<br/>
