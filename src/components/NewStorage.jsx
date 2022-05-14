@@ -68,6 +68,7 @@ const NewStorage =() => {
         <div className="NewStorage">
             <h2>Create a New Storage Space</h2>
             <form onSubmit={handleSubmit}>
+                <label>Rows: <br/>
                 <input 
                     type="number" 
                     placeholder="Rows" 
@@ -75,7 +76,9 @@ const NewStorage =() => {
                     min="0" 
                     onChange={handleChange} 
                     value={data.rows}/>  
+                </label>
                 <br/>
+                <label>Columns: <br/>
                 <input 
                     type="number" 
                     placeholder="Columns" 
@@ -83,13 +86,16 @@ const NewStorage =() => {
                     min="0" 
                     onChange={handleChange} 
                     value={data.columns}/> 
+                </label>
                 <br/>
+                <label>Name of Storage: <br/>
                 <input 
                     type="text" 
-                    placeholder="Name" 
+                    placeholder="eg: Cellar Fridge" 
                     name="name" 
                     onChange={handleChange} 
                     value={data.name}/> 
+                </label>
                 <br/>
                 <button 
                     className="storageSubmit" 

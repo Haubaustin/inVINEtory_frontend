@@ -4,7 +4,7 @@ import Client from "../services/api";
 import { useParams } from "react-router-dom";
 import BottleCard from '../components/BottleCard'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faWineBottle } from "@fortawesome/free-solid-svg-icons"
+import { faWineBottle, faEdit, faRotateLeft } from "@fortawesome/free-solid-svg-icons"
 import BubbleChartIcon from '@mui/icons-material/BubbleChart';
 import Search from "../components/Search";
 
@@ -14,16 +14,18 @@ const StoragePage = () => {
     const [data, setData] = useState([])
     const { userId } = useParams()
     const {storage_id} =useParams()
+    const [storage, setStorage]=useState({})
+    const [edit, setEdit]=useState(false)
 
     const storageData = async () => {
         await Client.get(`/storage/${userId}/find/${storage_id}`)
         .then((res) => {
-            console.log(res)
             divStyle = {
                 gridTempalateColumns: res.data.columns,
                 gridTemplateRows: res.data.rows
             }
                 setData(twoDimensionArray(res.data.rows, res.data.columns, res.data.Bottles))
+                setStorage(res.data)
         })
     }
 
@@ -64,14 +66,74 @@ const StoragePage = () => {
     storageData()
    }, [])
 
+   const handleChange = (e) => {
+    setStorage({
+        ...storage,
+        [e.target.name]: e.target.value
+    })
+}
+    const handleSubmit = async (e) => {
+        e.preventDefault()
+        await Client.put(`/storage/edit/${storage_id}`, storage)
+        storageData()
+        setEdit(false)
+    }
 
+   const editMode = () => {
+       if (!edit) {
+            return <div className="StoragePageTitle">
+                        <h1 className="SPTTitle">
+                            {storage && storage.name}
+                        </h1>
+                            <FontAwesomeIcon icon={faEdit} size="2x" className="SPTEdit" onClick={()=> {setEdit(true)}} />
+                    </div>
+       } else {
+            return  <div className="StoragePageTitleEdit">
+                        <form onSubmit={handleSubmit} className="editForm">
+                                <label>Rows: <br/>
+                                <input 
+                                    type="number" 
+                                    placeholder="Rows" 
+                                    name="rows" 
+                                    min="1" 
+                                    onChange={handleChange} 
+                                    value={storage.rows}/>  
+                                </label>
+                                <label>Columns: <br/>
+                                <input 
+                                    type="number" 
+                                    placeholder="Columns" 
+                                    name="columns" 
+                                    min="1" 
+                                    onChange={handleChange} 
+                                    value={storage.columns}/> 
+                                </label>
+                                <label>Name of Storage: <br/>
+                                <input 
+                                    type="text" 
+                                    placeholder="eg: Cellar Fridge" 
+                                    name="name" 
+                                    onChange={handleChange} 
+                                    value={storage.name}/> 
+                                </label>
+                            <button 
+                                className="editButton" 
+                                disabled={!storage.rows || !storage.columns || !storage.name}>
+                                    Submit Change(s)
+                            </button>
+                        </form>
+                        <FontAwesomeIcon icon={faRotateLeft} size="2x" className="SPTEdit" onClick={()=> {setEdit(false)}}/>
+                    </div>
+       }
+   }
   
 
     return (
         <div className="StoragePage">
+                {editMode()}
             <div className="StoragePageDisplay" style={{gridTemplateColumns: `repeat(${divStyle.gridTempalateColumns}, 1fr)`, gridTemplateRows: `repeat(${divStyle.gridTemplateRows}, 1fr}` }}>
             {data && data.map((wine) => (
-                    wine.map((column) => (
+                wine.map((column) => (
                     <div className="storageSpace">{column}</div>
                 ))
                  ))}

@@ -64,7 +64,7 @@ const NewBottle =({ rowN, columnN, storageData}) => {
 
     return (
         <div className="NewBottle">
-            <h4>Add Bottle to Storage</h4>
+            <h4>Add Bottle</h4>
             <FontAwesomeIcon 
                     icon={faPlusSquare} 
                     size="3x" 
