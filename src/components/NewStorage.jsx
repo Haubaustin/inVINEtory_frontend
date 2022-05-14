@@ -4,7 +4,7 @@ import { faWineBottle } from "@fortawesome/free-solid-svg-icons"
 import Client from "../services/api"
 import { useParams } from "react-router-dom";
 
-const NewStorage =() => {
+const NewStorage =({ getStorageAreas, closeModal }) => {
     const [storage, setStorage] =useState()
     const [message, setMessage] =useState("")
     const { userId } = useParams()
@@ -39,6 +39,8 @@ const NewStorage =() => {
                 })
                 setStorage()
             }, 2000);
+                getStorageAreas()
+                closeModal()
             }
         catch (error) {
             throw error

@@ -83,7 +83,7 @@ const Home = ({ user }) => {
                     onRequestClose={handleCloseStorageModal}
                     ariaHideApp={false}
                     >
-                            <NewStorage />
+                            <NewStorage getStorageAreas={getStorageAreas} closeModal={handleCloseStorageModal}/>
                 </Modal> 
         </div>
         <div className="homeSearch">

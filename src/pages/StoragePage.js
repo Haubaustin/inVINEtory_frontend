@@ -1,10 +1,10 @@
 import NewBottle from "../components/NewBottle"
 import { useEffect, useState } from "react";
 import Client from "../services/api";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import BottleCard from '../components/BottleCard'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faWineBottle, faEdit, faRotateLeft } from "@fortawesome/free-solid-svg-icons"
+import { faWineBottle, faEdit, faRotateLeft, faTrashCan } from "@fortawesome/free-solid-svg-icons"
 import BubbleChartIcon from '@mui/icons-material/BubbleChart';
 import Search from "../components/Search";
 
@@ -12,10 +12,16 @@ let divStyle = {}
 
 const StoragePage = () => {
     const [data, setData] = useState([])
-    const { userId } = useParams()
-    const {storage_id} =useParams()
     const [storage, setStorage]=useState({})
     const [edit, setEdit]=useState(false)
+
+    const { userId } = useParams()
+    const {storage_id} =useParams()
+  
+    const navigate = useNavigate()
+
+
+//##### Create Storage Area, 2d Array
 
     const storageData = async () => {
         await Client.get(`/storage/${userId}/find/${storage_id}`)
@@ -66,6 +72,10 @@ const StoragePage = () => {
     storageData()
    }, [])
 
+   //######   Edit Storage
+
+   //Edit Storage
+
    const handleChange = (e) => {
     setStorage({
         ...storage,
@@ -77,6 +87,15 @@ const StoragePage = () => {
         await Client.put(`/storage/edit/${storage_id}`, storage)
         storageData()
         setEdit(false)
+    }
+
+    //Delete Storage
+    const handleDelete = async () => {
+        const con = prompt(`Are you sure you want to delete Storage Area "${storage.name}". This cannot be undone\n Type delete to continue`)
+        if (con.toLowerCase() === "delete") {
+            await Client.delete(`/storage/delete/${storage_id}`)
+            navigate(`/${userId}/home`)
+        }
     }
 
    const editMode = () => {
@@ -123,10 +142,13 @@ const StoragePage = () => {
                             </button>
                         </form>
                         <FontAwesomeIcon icon={faRotateLeft} size="2x" className="SPTEdit" onClick={()=> {setEdit(false)}}/>
+                        <FontAwesomeIcon icon={faTrashCan} size="2x" className="SPTEdit" onClick={handleDelete}/>
                     </div>
        }
    }
   
+
+
 
     return (
         <div className="StoragePage">
