@@ -143,6 +143,14 @@ Button:active {
   left: 0;
   bottom: 0;
   position: relative;
+  display: flex;
+  justify-content: center;
+}
+
+.footerIcon {
+  align-self: center;
+  margin: 0 10px;
+  color: #1A1A1A;
 }
 
 .Header {
@@ -408,7 +416,7 @@ p {
 
 .StoragePage {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: 1fr .5fr;
   grid-template-rows: .3fr .3fr 1fr;
   grid-column-gap: 0px;
   grid-row-gap: 0px;
@@ -421,7 +429,7 @@ p {
 .StoragePageDisplay {
   grid-area: 2 / 1 / 4 / 2;
   background-color: aliceblue;
-  width: 90%;
+  width: 95%;
   min-height: 90%;
   border-radius: 10px;
   border: #273952 solid 2px;
@@ -434,7 +442,7 @@ p {
   background-color: #fff;
   height: fit-content;
   padding-bottom: 10px;
-  width: 90%;
+  width: 95%;
   border-radius: 10px;
   border: #273952 solid 2px;
   align-self: flex-start;
@@ -489,7 +497,7 @@ cursor: pointer;
   grid-area: 3 / 2 / 4 / 3;
   background-color: #fff;
   height: 90%;
-  width: 90%;
+  width: 95%;
   border-radius: 10px;
   border: #273952 solid 2px;
   align-self: flex-start;
@@ -554,4 +562,9 @@ cursor: pointer;
   background-image: url("https://jaksonhospitality.com/blog/wp-content/uploads/2017/09/vineyard-grapes-home-slideshow.jpg");
   background-size: cover;
   background-repeat: no-repeat;
+}
+
+.emptySpace:hover {
+  background-color: yellow;
+  cursor: pointer;
 }

@@ -56,16 +56,16 @@ const StoragePage = () => {
             for(let j = 0; j< b; j++) {
                 arr[i][j] = [i,j]
                 if (c.length === 0) {
-                    arr[i][j] = <NewBottle rowN={i} columnN={j} storageData={storageData} />
+                    arr[i][j] = <NewBottle rowN={i} columnN={j} storageData={storageData} key={[i,j]}/>
                 } else {
                     if (JSON.stringify([i,j])===JSON.stringify([c[bottle].row, c[bottle].column])) { 
-                        arr[i][j] = <BottleCard bottle={c[bottle]}  setViewBottle={() => {setViewBottle(true)}} setDetBottle={setDetBottle} />
+                        arr[i][j] = <BottleCard bottle={c[bottle]}  setViewBottle={() => {setViewBottle(true)}} setDetBottle={setDetBottle} key={[i,j]}/>
                         if (bottle  < c.length-1) {
                                 bottle++
                             }
                     }
                     else {
-                        arr[i][j] = <NewBottle rowN={i} columnN={j} storageData={storageData} />
+                        arr[i][j] = <NewBottle rowN={i} columnN={j} storageData={storageData} key={[i,j]}/>
                     }
                 }
             }
@@ -74,7 +74,6 @@ const StoragePage = () => {
     }
 
    //######   Edit Storage
-
    //Edit Storage
    const handleChange = (e) => {
     setStorage({
@@ -168,20 +167,30 @@ const StoragePage = () => {
                 </div>
        }
        else {
-        return <BottleDetails bottle={detBottle} setViewBottle={setViewBottle}/>
+        return <BottleDetails bottle={detBottle} setViewBottle={setViewBottle} storageData={storageData()}/>
         }
    }
 
+
+   //Page Render
     return (
         <div className="StoragePage">
                 {editMode()}
                 {displayBottleDetails()}
             <div className="StoragePageLegend">
                 <h3>Legend</h3>
-                <FontAwesomeIcon icon={faWineBottle} size="2x" style={{color: `#923a45`, stroke: 'black', strokeWidth: "20px"}}/> = Red<br/>
-                <FontAwesomeIcon icon={faWineBottle} size="2x" style={{color: `#EEEDC4`, stroke: 'black', strokeWidth: "20px"}}/> = White<br/>
-                <FontAwesomeIcon icon={faWineBottle} size="2x" style={{color: `#E4A598`, stroke: 'black', strokeWidth: "20px"}}/> = Rosé<br/>
-                <BubbleChartIcon sx={{ color: "#F7E7CE", stroke: 'black' }}/> = Champagne/Sparkling
+                <FontAwesomeIcon 
+                    icon={faWineBottle} 
+                    size="2x" 
+                    style={{color: `#923a45`, stroke: 'black', strokeWidth: "20px"}}/> = Red<br/>
+                <FontAwesomeIcon 
+                    icon={faWineBottle} 
+                    size="2x" style={{color: `#EEEDC4`, stroke: 'black', strokeWidth: "20px"}}/> = White<br/>
+                <FontAwesomeIcon 
+                    icon={faWineBottle} 
+                    size="2x" style={{color: `#E4A598`, stroke: 'black', strokeWidth: "20px"}}/> = Rosé<br/>
+                <BubbleChartIcon 
+                    sx={{ color: "#F7E7CE", stroke: 'black' }}/> = Champagne/Sparkling
             </div>
             <div className="StoragePageSearch">
                 <Search />

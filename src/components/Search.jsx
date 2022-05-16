@@ -39,19 +39,23 @@ const Search = () => {
             </div>
             <div className="storageSearchResults">
                     <table className="results">
-                        <tr>
-                            <th>Name:</th>
-                            <th>Year:</th>
-                            <th>Row/Col:</th>
-                        </tr>
+                        <thead>
+                            <tr>
+                                <th>Name:</th>
+                                <th>Year:</th>
+                                <th>Row/Col:</th>
+                            </tr>
+                        </thead>
+                        <tbody>
                 {bottle && bottle.map((bot)=> (
-                        <tr className="resultsRow">
-                            <td>{bot.name}</td>
-                            <td>{bot.vintage}</td>
-                            <td>{parseInt(bot.row)+1}/{parseInt(bot.column)+1}</td>
-                        </tr>
+                            <tr className="resultsRow">
+                                <td>{bot.name}</td>
+                                <td>{bot.vintage}</td>
+                                <td>{parseInt(bot.row)+1}/{parseInt(bot.column)+1}</td>
+                            </tr>
                 ))}
-                        </table>
+                        </tbody>
+                    </table>
             </div>
         </div>
     )
