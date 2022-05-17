@@ -23,6 +23,7 @@ const BottleDetails = ({ bottle, setViewBottle }) => {
     })
     const [message, setMessage] =useState("")
 
+
     const handleChange = (e) => {
         setData({
             ...data,

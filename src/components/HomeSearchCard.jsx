@@ -34,8 +34,7 @@ const HomeSearchCard = ({bottle}) => {
                 </span>
             </span>
             <h3 className="homeSearchWine">{bottle.name}</h3>
-            <p className="homeSearchDetails">{bottle.vintage} {bottle.varietal}</p>
-            <p className="homeSearchWineryRegion">{bottle.winery} | {bottle.region}</p>
+            <p className="homeSearchDetails">{bottle.vintage} | {bottle.varietal} | {bottle.winery} | {bottle.region}</p>
             <p className="homeSearchLoc">Located in Row: {parseInt(bottle.row+1)} Column: {parseInt(bottle.column+1)} of "{bottle.Storage.name}" </p>
         </div>
     )

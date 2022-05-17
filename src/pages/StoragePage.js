@@ -167,7 +167,7 @@ const StoragePage = () => {
                 </div>
        }
        else {
-        return <BottleDetails bottle={detBottle} setViewBottle={setViewBottle} storageData={storageData()}/>
+        return <BottleDetails bottle={detBottle} setViewBottle={setViewBottle} storageData={storageData}/>
         }
    }
 

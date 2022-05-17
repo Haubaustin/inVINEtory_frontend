@@ -2,7 +2,6 @@ import { useEffect, useState } from "react"
 import Client from "../services/api"
 import { useParams } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faSquareFull } from "@fortawesome/free-regular-svg-icons";
 import { faWineBottle } from "@fortawesome/free-solid-svg-icons"
 import EmptySpace from "./EmptySpace";
 
@@ -18,6 +17,8 @@ const StorageTransfer = ({ bottle }) => {
         row: 0,
         column: 0
     })
+    const [active, setActive] =useState(false)
+
 
     
     useEffect(()=>{
@@ -92,7 +93,7 @@ const StorageTransfer = ({ bottle }) => {
                             }
                     }
                     else {
-                        arr[i][j] = <EmptySpace row={i} column={j} setSto={setSto} sto={sto} key={[i,j]}/>
+                        arr[i][j] = <EmptySpace row={i} column={j} setSto={setSto} sto={sto} key={[i,j]} />
                     }
                 }
             }

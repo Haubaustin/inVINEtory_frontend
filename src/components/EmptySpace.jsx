@@ -10,13 +10,14 @@ const handleClick = () => {
         row: row,
         column: column
     })
+
 }
 
     return (
         <span onClick={handleClick}>
-            <FontAwesomeIcon icon={faSquareFull}  className="emptySpace" size="2x" />
+            <FontAwesomeIcon icon={faSquareFull}  className="emptySpace" size="2x"  />
         </span>
-    )
+        )
 }
 
 
