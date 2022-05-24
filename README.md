@@ -25,8 +25,8 @@
 - JSON Web Token
 - AWS Amplify 
 ---
-## Planning
-[Trello](https://trello.com/invite/b/46WLqSJM/2d440de25606ba09c795688b462e9d6d/project4) <br>
-[ERD](https://lucid.app/lucidchart/a38cfd53-d9fc-4c44-b714-fbfcd8aac6a0/edit?invitationId=inv_469b3ce5-d458-49b8-9bd5-c28a49e36b29) <br>
-[Wireframe](https://lucid.app/lucidchart/fa8a6d22-2879-4b80-a89b-88ed7166f90a/edit?invitationId=inv_661b04a4-2799-4ef7-ac4f-5f77bb24caf8)
+## Future Updates
+- Drag and drop bottles
+- Bottle images
+- Faster bottle creation and import
 ---
