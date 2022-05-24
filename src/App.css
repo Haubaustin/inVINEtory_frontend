@@ -575,6 +575,8 @@ cursor: pointer;
   background-repeat: no-repeat;
   position: absolute;
   border-radius: 25%;
+  align-self: center;
+  justify-self: center;
 }
 
 .emptySpace:hover {
