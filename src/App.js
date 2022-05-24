@@ -37,7 +37,7 @@ function App() {
           <Route path='/' element={<WelcomePage />} />
           <Route path='/register' element={<Register />} />
           <Route path={`/:userId/home`} element={<Home user={user}  />} />
-          <Route path={`/:userId/storage/:storage_id`} element={<StoragePage />} />
+          <Route path={`/:userId/storage/:storage_id`} element={<StoragePage user={user} />} />
         </Routes>
       <Footer />
     </div>

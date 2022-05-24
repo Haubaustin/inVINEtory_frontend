@@ -11,7 +11,7 @@ import BottleDetails from "../components/BottleDetails";
 
 let divStyle = {}
 
-const StoragePage = () => {
+const StoragePage = ({ user }) => {
     const [data, setData] = useState([])
     const [storage, setStorage]=useState({})
     const [edit, setEdit]=useState(false)
@@ -173,7 +173,7 @@ const StoragePage = () => {
 
 
    //Page Render
-    return (
+    return (user) ? (
         <div className="StoragePage">
                 {editMode()}
                 {displayBottleDetails()}
@@ -196,6 +196,16 @@ const StoragePage = () => {
                 <Search />
             </div>
         </div>
+    )
+    :
+    (
+    <div className="errorPage">
+        <div className="errorDiv">
+            <h3>Ope!</h3>
+            <p>You need to be logged in to access this page don't you know</p>
+            <button className="" onClick={()=> navigate('/register')}>Login</button>
+        </div>
+    </div>
     )
 }
 

@@ -39,6 +39,7 @@ const BottleDetails = ({ bottle, setViewBottle }) => {
         setTimeout(()=> {
             setMessage("")
             setEdit(false)
+            window.location.reload()
         }, 2000)
     }
 

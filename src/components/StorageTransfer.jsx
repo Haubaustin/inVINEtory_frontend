@@ -17,9 +17,6 @@ const StorageTransfer = ({ bottle }) => {
         row: 0,
         column: 0
     })
-    const [active, setActive] =useState(false)
-
-
     
     useEffect(()=>{
         getOtherStorage()
