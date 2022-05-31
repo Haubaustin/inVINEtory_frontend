@@ -25,8 +25,10 @@
 - JSON Web Token
 - AWS Amplify 
 ---
+## Update 05/30/2022
+![DnD](/src/assets/dnd.gif)
+### Added Drag and Drop feature for bottles to be moved around in storage. On the drop of the bottle an API call is made to update the position of the bottle
+---
 ## Future Updates
-- Drag and drop bottles
 - Bottle images
 - Faster bottle creation and import
----
