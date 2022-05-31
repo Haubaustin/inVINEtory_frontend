@@ -6,8 +6,10 @@ import BottleCard from '../components/BottleCard'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faWineBottle, faEdit, faRotateLeft, faTrashCan } from "@fortawesome/free-solid-svg-icons"
 import BubbleChartIcon from '@mui/icons-material/BubbleChart';
-import Search from "../components/Search";
+import HomeSearch from "../components/HomeSearch";
 import BottleDetails from "../components/BottleDetails";
+import HomeSearchCard from "../components/HomeSearchCard";
+
 
 let divStyle = {}
 
@@ -17,6 +19,7 @@ const StoragePage = ({ user }) => {
     const [edit, setEdit]=useState(false)
     const [viewBottle, setViewBottle] = useState(false)
     const [detBottle, setDetBottle] =useState()
+    const [results, setResults] = useState()
     
     const { userId } = useParams()
     const {storage_id} = useParams()
@@ -81,7 +84,7 @@ const StoragePage = ({ user }) => {
         [e.target.name]: e.target.value
     })
 }
-    const handleSubmit = async (e) => {
+    const handleEdit = async (e) => {
         e.preventDefault()
         await Client.put(`/storage/edit/${storage_id}`, storage)
         storageData()
@@ -108,7 +111,7 @@ const StoragePage = ({ user }) => {
                     </div>
        } else {
             return  <div className="StoragePageTitleEdit">
-                        <form onSubmit={handleSubmit} className="editForm">
+                        <form onSubmit={handleEdit} className="editForm">
                                 <label>Rows: <br/>
                                 <input 
                                     type="number" 
@@ -154,7 +157,7 @@ const StoragePage = ({ user }) => {
                     </div>
        }
    }
-
+   
    //#### Storage Display/Bottle Expanded Display
    const displayBottleDetails = () => {
        if (!viewBottle) {
@@ -170,6 +173,17 @@ const StoragePage = ({ user }) => {
         return <BottleDetails bottle={detBottle} setViewBottle={setViewBottle} storageData={storageData}/>
         }
    }
+
+   //Query Storage
+    const handleSubmit = async (x) => {
+        const res = await Client.get(`/bottle/findinstorage/${storage_id}/${x}`)
+        setResults(res.data)
+        console.log(res.data)
+}
+
+    const clearResults = () => {
+        setResults()
+    }
 
 
    //Page Render
@@ -193,7 +207,13 @@ const StoragePage = ({ user }) => {
                     sx={{ color: "#F7E7CE", stroke: 'black' }}/> = Champagne/Sparkling
             </div>
             <div className="StoragePageSearch">
-                <Search />
+                <h2>Search All Wines</h2>
+                    <HomeSearch 
+                        handleSubmit={handleSubmit} 
+                        clearResults={clearResults}/>
+                        {results && results.map((res, i) => (
+                            <HomeSearchCard bottle={res} key={i} />
+                        ))}
             </div>
         </div>
     )

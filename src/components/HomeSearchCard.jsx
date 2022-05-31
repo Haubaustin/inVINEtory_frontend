@@ -20,6 +20,17 @@ const HomeSearchCard = ({bottle}) => {
     }
 
 
+    const guardOp = () => {
+        if (typeof bottle.Storage === "undefined") {
+            return <p className="homeSearchLoc">Located in Row: {parseInt(bottle.row+1)} Column: {parseInt(bottle.column+1)}</p>
+            }
+        else {
+            return  <p className="homeSearchLoc">Located in Row: {parseInt(bottle.row+1)} Column: {parseInt(bottle.column+1)} of "{bottle && bottle.Storage.name}" </p>
+        }
+    }
+    
+
+
 
     
     return  (
@@ -35,7 +46,7 @@ const HomeSearchCard = ({bottle}) => {
             </span>
             <h3 className="homeSearchWine">{bottle.name}</h3>
             <p className="homeSearchDetails">{bottle.vintage} | {bottle.varietal} | {bottle.winery} | {bottle.region}</p>
-            <p className="homeSearchLoc">Located in Row: {parseInt(bottle.row+1)} Column: {parseInt(bottle.column+1)} of "{bottle.Storage.name}" </p>
+                {guardOp()}
         </div>
     )
 }

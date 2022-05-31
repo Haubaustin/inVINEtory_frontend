@@ -270,12 +270,12 @@ Button:active {
   grid-area: 2 / 3 / 3 / 4;
 }
 
- .homeStorage::-webkit-scrollbar, .homeBottle::-webkit-scrollbar {
+ .homeStorage::-webkit-scrollbar, .homeBottle::-webkit-scrollbar, .StoragePageSearch::-webkit-scrollbar, .StoragePageDisplay::-webkit-scrollbar {
   background-color: #1a1a1a00;
   color: #1A1A1A;
 }
 
-.homeStorage::-webkit-scrollbar-thumb, .homeBottle::-webkit-scrollbar-thumb {
+.homeStorage::-webkit-scrollbar-thumb, .homeBottle::-webkit-scrollbar-thumb, .StoragePageSearch::-webkit-scrollbar-thumb, .StoragePageDisplay::-webkit-scrollbar-thumb {
   background-color: rgba(0, 0, 0, 0.411);
   border-radius: 10px;
 }
@@ -511,6 +511,7 @@ cursor: pointer;
   border-radius: 10px;
   border: #273952 solid 2px;
   align-self: flex-start;
+  overflow-y: scroll;
 }
 
 .storageSpace {
