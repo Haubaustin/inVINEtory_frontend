@@ -59,13 +59,13 @@ const StoragePage = ({ user }) => {
                     arr[i][j] = <NewBottle rowN={i} columnN={j} storageData={storageData} key={[i,j]}/>
                 } else {
                     if (JSON.stringify([i,j])===JSON.stringify([c[bottle].row, c[bottle].column])) { 
-                        arr[i][j] = <BottleCard bottle={c[bottle]}  setViewBottle={() => {setViewBottle(true)}} setDetBottle={setDetBottle} key={[i,j]}/>
+                        arr[i][j] = <BottleCard bottle={c[bottle]} setViewBottle={() => {setViewBottle(true)}} setDetBottle={setDetBottle} key={[i,j]}/>
                         if (bottle  < c.length-1) {
                                 bottle++
                             }
                     }
                     else {
-                        arr[i][j] = <NewBottle rowN={i} columnN={j} storageData={storageData} key={[i,j]}/>
+                        arr[i][j] = <NewBottle  rowN={i} columnN={j} storageData={storageData} key={[i,j]}/>
                     }
                 }
             }
@@ -161,7 +161,7 @@ const StoragePage = ({ user }) => {
         return  <div className="StoragePageDisplay" style={{gridTemplateColumns: `repeat(${divStyle.gridTempalateColumns}, 1fr)`, gridTemplateRows: `repeat(${divStyle.gridTemplateRows}, 1fr}` }}>
                     {data && data.map((wine) => (
                         wine.map((column) => (
-                            <div className="storageSpace">{column}</div>
+                            <div className="storageSpace"key={column.key}>{column}</div>
                         ))
                     ))}
                 </div>

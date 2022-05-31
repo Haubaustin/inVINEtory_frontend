@@ -1,6 +1,7 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faWineBottle } from "@fortawesome/free-solid-svg-icons"
 import BubbleChartIcon from '@mui/icons-material/BubbleChart';
+import { useDrag } from 'react-dnd'
 
 let divStyle ={}
 
@@ -20,8 +21,17 @@ const BottleCard = ({ bottle, setDetBottle, setViewBottle }) => {
         } 
     }
 
+    const [{ isDragging }, dragRef] = useDrag(() => ({
+        type: "card",
+        item: { itemID: bottle.id},
+        collect: (monitor) => ({
+            item: monitor.getItem(),
+            isDragging: monitor.isDragging()
+        }),
+    }));
+
     return (
-        <div className="BottleCard" onClick={function() {
+        <div className="BottleCard"  style={{backgroundColor: isDragging ? "#EEE8AA" : "#fff"}} ref={dragRef} onClick={function() {
                 setViewBottle(true)
             return  setDetBottle(bottle)
 

@@ -4,6 +4,7 @@ import Modal from 'react-modal';
 import { useState } from "react";
 import Client from '../services/api'
 import { useParams } from "react-router-dom";
+import { useDrop } from "react-dnd";
 
 const NewBottle =({ rowN, columnN, storageData}) => {
     const { userId } = useParams()
@@ -23,7 +24,27 @@ const NewBottle =({ rowN, columnN, storageData}) => {
         notes: ""
     })
 
+    const move = {
+        row: rowN,
+        column: columnN
+    }
 
+    //Drag Drop
+    const [{ isOver, canDrop }, dropRef] = useDrop(() => ({
+        accept: "card",
+        collect: (mon) => ({
+            isOver: mon.isOver(),
+            canDrop: mon.canDrop()
+        }),
+        drop: monitor => {handleEdit(monitor.itemID)}
+        }));
+
+    const handleEdit = async (id) => {
+        await Client.put(`bottle/edit/${id}`, move)
+        storageData()
+    }
+
+    //Modal to Create Bottle
     const handleCloseBottleModal = () => {
         setBottleModal(false)
     }
@@ -61,14 +82,16 @@ const NewBottle =({ rowN, columnN, storageData}) => {
         }, 2000);
     }
 
-
+    let isActive = isOver && canDrop
     return (
-        <div className="NewBottle">
+        <div className="NewBottle" 
+            ref={dropRef} 
+            style={{ backgroundColor: isActive ? "#90EE90" : "#fff" }}>
             <h4>Add Bottle</h4>
             <FontAwesomeIcon 
                     icon={faPlusSquare} 
                     size="3x" 
-                    onClick={handleOpenBottleModal} />
+                    onClick={handleOpenBottleModal} /> 
                 <Modal 
                     isOpen={bottleModal} 
                     onRequestClose={handleCloseBottleModal}

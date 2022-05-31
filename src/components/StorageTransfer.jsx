@@ -109,7 +109,7 @@ const StorageTransfer = ({ bottle }) => {
                 <select onChange={handleChange} name="storage_id">
                     <option value={""}>-</option>
                     {storage && storage.map((sto) => (
-                        <option value={sto.id}>{sto.name}</option>
+                        <option key={sto.id}value={sto.id}>{sto.name}</option>
                     ))}
                 </select>
                 <br/>
