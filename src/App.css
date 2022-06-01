@@ -552,7 +552,8 @@ cursor: pointer;
 }
 
 .welcomePageText {
-  height: 50%;
+  min-height: fit-content;
+  height: 60%;
   width: 60%;
   background-color: #fff;
   border:#273952 3px solid;
@@ -561,14 +562,13 @@ cursor: pointer;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: space-evenly;
-  z-index: 10;
   opacity: .90;
+  justify-content: space-evenly;
 }
 
 .welcomePageImage {
-  height: 65%;
-  width: 70%;
+  height: 85%;
+  width: 75%;
   border:#273952 3px solid;
   border-radius: 10px;
   background-image: url("https://jaksonhospitality.com/blog/wp-content/uploads/2017/09/vineyard-grapes-home-slideshow.jpg");
@@ -577,9 +577,9 @@ cursor: pointer;
   border-radius: 25%;
   align-self: center;
   justify-self: center;
-  position: absolute;
-  top: 50;
-  left: 50;
+  display: grid;
+  align-items: center;
+  justify-items: center;
 }
 
 .emptySpace:hover {
@@ -802,7 +802,16 @@ cursor: pointer;
   .welcomePageImage {
     background-position: center;
     background-size: cover;
-    height: 55%;
+    height: 75%;
     width: 80%;
+    background-image: url(https://www.goodfruit.com/wp-content/uploads/marquetteGrape36018-1-1000x1264.jpg);
+  }
+
+  .welcomePageParagraph {
+    font-size: 9px;
+  }
+
+  .welcomePageText {
+    font-size: small;
   }
 }
