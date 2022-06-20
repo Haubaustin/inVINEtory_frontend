@@ -40,12 +40,13 @@ const HomeSearchCard = ({bottle}) => {
                     icon={faWineBottle} size="2x" 
                     style={{color: `${divStyle.color}`}} 
                     className="storageBottle"/>
-                <span hidden={bottle.still}> 
+                <span 
+                    hidden={bottle.still}> 
                     <BubbleChartIcon sx={{ color: "#F7E7CE", stroke: 'black' }} /> 
                 </span>
             </span>
-            <h3 className="homeSearchWine">{bottle.name}</h3>
-            <p className="homeSearchDetails">{bottle.vintage} | {bottle.varietal} | {bottle.winery} | {bottle.region}</p>
+            <h4 className="homeSearchWine">{bottle.name}</h4>
+            <p className="homeSearchDetails">{bottle.vintage} | {bottle.varietal}<br></br> {bottle.winery}</p>
                 {guardOp()}
         </div>
     )

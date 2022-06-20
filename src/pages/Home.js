@@ -18,7 +18,6 @@ const Home = ({ user }) => {
     const [storageModal, setStorageModal]=useState(false)
     const [results, setResults] = useState()
 
-
     useEffect(() => {
         getStorageAreas()
     }, [])
@@ -63,34 +62,37 @@ const Home = ({ user }) => {
                 </div>
             </div>
         </div>
-        <div className="homeBottle">
-            <div className="homeBottleDisplay">
-                <h2>{user}'s Bottles</h2>
+        {/*          */}
+        <div className="homeMenu">
+            <div className="homeAddDiv">
+                    <h2 className="homeAddTitle">Add New Storage</h2>
+                    <FontAwesomeIcon 
+                        icon={faPlusSquare} 
+                        size="5x" 
+                        onClick={handleOpenStorageModal}
+                        className="faNewStorage"/>
+                    <Modal 
+                        isOpen={storageModal} 
+                        onRequestClose={handleCloseStorageModal}
+                        ariaHideApp={false}
+                        >
+                        <NewStorage 
+                            getStorageAreas={getStorageAreas} 
+                            closeModal={handleCloseStorageModal}/>
+                    </Modal> 
+            </div>
+            <div className="homeSearch">
+                <h2>Search All Wines</h2>
+                <HomeSearch 
+                    handleSubmit={handleSubmit} 
+                    clearResults={clearResults}
+                    description={"Search all of your storage areas by any characteristics of the bottles."}/>
+                          <div className="homeBottleDisplay">
                 {results && results.map((res, i) => (
                     <HomeSearchCard bottle={res} key={i} />
                 ))}
-            </div>
-        </div>        
-        <div className="homeAddDiv">
-                <h2 className="homeAddTitle">Add New Storage</h2>
-                <FontAwesomeIcon 
-                    icon={faPlusSquare} 
-                    size="7x" 
-                    onClick={handleOpenStorageModal}
-                    className="faNewStorage"/>
-                <Modal 
-                    isOpen={storageModal} 
-                    onRequestClose={handleCloseStorageModal}
-                    ariaHideApp={false}
-                    >
-                            <NewStorage getStorageAreas={getStorageAreas} closeModal={handleCloseStorageModal}/>
-                </Modal> 
         </div>
-        <div className="homeSearch">
-            <h2>Search All Wines</h2>
-            <HomeSearch 
-                handleSubmit={handleSubmit} 
-                clearResults={clearResults}/>
+            </div>
         </div>
     </div>
     ) : (

@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react"
 
 
-const HomeSearch = ({handleSubmit, clearResults}) => {
+const HomeSearch = ({handleSubmit, clearResults, description}) => {
 const [data, setData]=useState("")
 const [debounced, setDebounced]=useState(data)
 
@@ -26,7 +26,7 @@ const [debounced, setDebounced]=useState(data)
     
     return (
         <div>
-        <p>Search all of your storage by any characteristics of the bottles. <br/>Results will be displayed on the left</p>
+            <p>{description}</p>
                     <input 
                         type ='text' 
                         name ="search_query" 

@@ -161,12 +161,15 @@ const StoragePage = ({ user }) => {
    //#### Storage Display/Bottle Expanded Display
    const displayBottleDetails = () => {
        if (!viewBottle) {
-        return  <div className="StoragePageDisplay" style={{gridTemplateColumns: `repeat(${divStyle.gridTempalateColumns}, 1fr)`, gridTemplateRows: `repeat(${divStyle.gridTemplateRows}, 1fr}` }}>
-                    {data && data.map((wine) => (
-                        wine.map((column) => (
-                            <div className="storageSpace"key={column.key}>{column}</div>
-                        ))
-                    ))}
+        return  <div>
+                    {editMode()}
+                    <div className="StoragePageDisplay" style={{gridTemplateColumns: `repeat(${divStyle.gridTempalateColumns}, 1fr)`, gridTemplateRows: `repeat(${divStyle.gridTemplateRows}, 1fr}` }}>
+                        {data && data.map((wine) => (
+                            wine.map((column) => (
+                                <div className="storageSpace"key={column.key}>{column}</div>
+                            ))
+                        ))}
+                    </div>
                 </div>
        }
        else {
@@ -189,33 +192,35 @@ const StoragePage = ({ user }) => {
    //Page Render
     return (user) ? (
         <div className="StoragePage">
-                {editMode()}
                 {displayBottleDetails()}
-            <div className="StoragePageLegend">
-                <h3>Legend</h3>
-                <FontAwesomeIcon 
-                    icon={faWineBottle} 
-                    size="2x" 
-                    style={{color: `#923a45`, stroke: 'black', strokeWidth: "20px"}}/> = Red<br/>
-                <FontAwesomeIcon 
-                    icon={faWineBottle} 
-                    size="2x" style={{color: `#EEEDC4`, stroke: 'black', strokeWidth: "20px"}}/> = White<br/>
-                <FontAwesomeIcon 
-                    icon={faWineBottle} 
-                    size="2x" style={{color: `#E4A598`, stroke: 'black', strokeWidth: "20px"}}/> = Rosé<br/>
-                <BubbleChartIcon 
-                    sx={{ color: "#F7E7CE", stroke: 'black' }}/> = Champagne/Sparkling
-            </div>
+            <div className="StoragePageMenu">
+                <div className="StoragePageLegend">
+                    <h3>Legend</h3>
+                    <span><FontAwesomeIcon 
+                        icon={faWineBottle} 
+                        size="2x" 
+                        style={{color: `#923a45`, stroke: 'black', strokeWidth: "20px"}}/> = Red<br/></span>
+                    <span><FontAwesomeIcon 
+                        icon={faWineBottle} 
+                        size="2x" style={{color: `#EEEDC4`, stroke: 'black', strokeWidth: "20px"}}/> = White<br/></span>
+                    <span><FontAwesomeIcon 
+                        icon={faWineBottle} 
+                        size="2x" style={{color: `#E4A598`, stroke: 'black', strokeWidth: "20px"}}/> = Rosé<br/></span>
+                    <span><BubbleChartIcon 
+                        sx={{ color: "#F7E7CE", stroke: 'black' }}/> = Champagne/Sparkling</span>
+                </div>
             <div className="StoragePageSearch">
-                <h2>Search All Wines</h2>
+                <h3>Search All Wines</h3>
                     <HomeSearch 
                         handleSubmit={handleSubmit} 
-                        clearResults={clearResults}/>
+                        clearResults={clearResults}
+                        description={"Search for wine bottles within the current storage area"}/>
                         {results && results.map((res, i) => (
                             <HomeSearchCard bottle={res} key={i} />
                         ))}
             </div>
         </div>
+    </div>
     )
     :
     (
