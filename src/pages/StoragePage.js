@@ -111,6 +111,11 @@ const StoragePage = ({ user }) => {
                     </div>
        } else {
             return  <div className="StoragePageTitleEdit">
+                        <FontAwesomeIcon 
+                            icon={faRotateLeft} 
+                            size="2x" 
+                            className="SPTEdit"
+                            onClick={()=> {setEdit(false)}}/>
                         <form onSubmit={handleEdit} className="editForm">
                                 <label>Rows: <br/>
                                 <input 
@@ -145,11 +150,6 @@ const StoragePage = ({ user }) => {
                             </button>
                         </form>
                         <FontAwesomeIcon 
-                            icon={faRotateLeft} 
-                            size="2x" 
-                            className="SPTEdit"
-                            onClick={()=> {setEdit(false)}}/>
-                        <FontAwesomeIcon 
                             icon={faTrashCan} 
                             size="2x" 
                             className="SPTEdit"
@@ -161,7 +161,7 @@ const StoragePage = ({ user }) => {
    //#### Storage Display/Bottle Expanded Display
    const displayBottleDetails = () => {
        if (!viewBottle) {
-        return  <div>
+        return  <div className="StorageDiv">
                     {editMode()}
                     <div className="StoragePageDisplay" style={{gridTemplateColumns: `repeat(${divStyle.gridTempalateColumns}, 1fr)`, gridTemplateRows: `repeat(${divStyle.gridTemplateRows}, 1fr}` }}>
                         {data && data.map((wine) => (

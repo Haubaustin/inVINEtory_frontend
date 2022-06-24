@@ -256,12 +256,12 @@ Button:active {
   grid-area: 2 / 3 / 3 / 4;
 }
 
- .homeStorage::-webkit-scrollbar, .homeBottle::-webkit-scrollbar, .StoragePageSearch::-webkit-scrollbar, .StoragePageDisplay::-webkit-scrollbar {
+.StoragePageMenu::-webkit-scrollbar, .homeStorage::-webkit-scrollbar, .homeBottle::-webkit-scrollbar, .StoragePageSearch::-webkit-scrollbar, .StoragePageDisplay::-webkit-scrollbar {
   background-color: #1a1a1a00;
   color: #1A1A1A;
 }
 
-.homeStorage::-webkit-scrollbar-thumb, .homeBottle::-webkit-scrollbar-thumb, .StoragePageSearch::-webkit-scrollbar-thumb, .StoragePageDisplay::-webkit-scrollbar-thumb {
+.StoragePageMenu::-webkit-scrollbar-thumb, .homeStorage::-webkit-scrollbar-thumb, .homeBottle::-webkit-scrollbar-thumb, .StoragePageSearch::-webkit-scrollbar-thumb, .StoragePageDisplay::-webkit-scrollbar-thumb {
   background-color: rgba(0, 0, 0, 0.411);
   border-radius: 10px;
 }
@@ -415,6 +415,13 @@ p {
   margin: 15px;
 }
 
+.StorageDiv {
+  width: 90%;
+  height: 95%;
+  align-self: flex-start;
+  justify-self: center;
+}
+
 .storageDisplayCont {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
@@ -435,7 +442,6 @@ p {
 
 .StoragePageDisplay {
   background-color: aliceblue;
-  width: 95%;
   min-height: 90%;
   border-radius: 10px;
   border: #273952 solid 2px;
@@ -466,8 +472,6 @@ p {
 .StoragePageTitle {
   grid-area: 1 / 1 / 2 / 3;
   background-color: #fff;
-  height: 90%;
-  width: 95%;
   border-radius: 10px;
   border: #273952 solid 2px;
   display: flex;
@@ -478,12 +482,12 @@ p {
 .StoragePageTitleEdit {
   grid-area: 1 / 1 / 2 / 3;
   background-color: #fff;
-  height: 95%;
-  width: 95%;
   border-radius: 10px;
   border: #273952 solid 2px;
-  padding: 10px 0px
-
+  padding: 10px 0px;
+  display: flex;
+  justify-content: space-evenly;
+  flex-direction: row;
 }
 
 .SPTEdit {
